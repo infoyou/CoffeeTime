@@ -29,7 +29,7 @@
         self.productId = dict[@"commodityId"];
         self.productName = dict[@"commodityName"];
         self.unitId = dict[@"commodityTypeId"];
-        self.unitPrice = dict[@"commodityPrice"];
+        self.unitPrice = @([dict[@"commodityPrice"] integerValue] * 100);
         self.productNo = dict[@"commodityNumber"];
         self.unitName = dict[@"commodityTypeName"];
         self.shopCartNum = dict[@"commodityAmount"];

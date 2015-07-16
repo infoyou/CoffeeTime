@@ -96,7 +96,7 @@ static FMDBConnection *instance = nil;
     // unitName TEXT,   //种类名称
     // productNo TEXT //商品编码
     
-    NSString *createTabMsg = @"create table if not exists ShopCart ( storeId TEXT,                                                                                        productId TEXT, typeId TEXT, shopCartNum int,  unitPrice TEXT,  storeName TEXT,                                                                                               productName TEXT, unitName TEXT,  productNo TEXT, PRIMARY KEY (storeId, productId, typeId) )";
+    NSString *createTabMsg = @"create table if not exists ShopCart ( storeId TEXT,                                                                                        productId TEXT, typeId TEXT, shopCartNum int,  unitPrice int,  storeName TEXT,                                                                                               productName TEXT, unitName TEXT,  productNo TEXT, PRIMARY KEY (storeId, productId, typeId) )";
     
     res = [self.db executeUpdate:createTabMsg];
     
@@ -266,7 +266,7 @@ static FMDBConnection *instance = nil;
     shopCartModel.productId = [res stringForColumn:@"productId"];
     shopCartModel.unitId = [res stringForColumn:@"typeId"];
     shopCartModel.shopCartNum = @([res intForColumn:@"shopCartNum"]);
-    shopCartModel.unitPrice = [res stringForColumn:@"unitPrice"];
+    shopCartModel.unitPrice = @([res intForColumn:@"unitPrice"]);
     shopCartModel.shopName = [res stringForColumn:@"storeName"];
     shopCartModel.productName = [res stringForColumn:@"productName"];
     shopCartModel.unitName = [res stringForColumn:@"unitName"];
@@ -312,6 +312,23 @@ static FMDBConnection *instance = nil;
     }
     
     return NO;
+}
+
+- (NSMutableArray *)getShopCartShowNumber
+{
+    
+    NSMutableArray *showNumberArray = [NSMutableArray array];
+    
+    NSString *sql = @"SELECT storeId, SUM(shopCartNum), SUM(shopCartNum * unitPrice / 100) from ShopCart GROUP BY storeId ORDER BY storeId";
+    FMResultSet *res = [self.db executeQuery:sql];
+    
+    while ([res next]) {
+        
+        [showNumberArray addObject:[res stringForColumnIndex:1]];
+        [showNumberArray addObject:[res stringForColumnIndex:2]];
+    }
+    
+    return showNumberArray;
 }
 
 #pragma mark - update business action

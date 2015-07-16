@@ -42,8 +42,8 @@
     
     [self.confirmView setFrame:CGRectMake(self.confirmView.frame.origin.x, self.view.frame.size.height - self.confirmView.frame.size.height-64, SCREEN_WIDTH, self.confirmView.frame.size.height)];
     
-    self.numLabel.layer.cornerRadius = self.numLabel.frame.size.height/2;
-    self.numLabel.layer.masksToBounds = YES;
+    self.totalNumLabel.layer.cornerRadius = self.totalNumLabel.frame.size.height/2;
+    self.totalNumLabel.layer.masksToBounds = YES;
     
     UIButton *btnOK = (UIButton *)[self.confirmView viewWithTag:103];
     btnOK.layer.cornerRadius = 4;
@@ -99,11 +99,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)jieSuan:(id)sender {
+- (IBAction)doConfim:(id)sender {
     
-    ShopCarViewController*vc = [ShopCarViewController new];
+    ShopCarViewController *vc = [ShopCarViewController new];
     [self.navigationController pushViewController:vc animated:YES];
-    
 }
 
 #pragma mark -- 实现加减按钮点击代理事件
@@ -174,9 +173,9 @@
         productModel = productDataArray[rowIndex];
         productTypeModel = productModel.productTypeArray[goodsTypeListIndex];
         
-        if ([productTypeModel.productNum integerValue] > 0)
+        if (productTypeModel.productNum > 0)
         {
-            productTypeModel.productNum = @([productTypeModel.productNum integerValue] - 1);
+            productTypeModel.productNum --;
         }
         
     } else if (handleType == 2) {
@@ -184,10 +183,26 @@
         //做加法
         productModel = productDataArray[rowIndex];
         productTypeModel = productModel.productTypeArray[goodsTypeListIndex];
-        productTypeModel.productNum = @([productTypeModel.productNum integerValue] + 1);
+        productTypeModel.productNum ++;
     }
     
     [self doSaveLocalDB:productModel productTypeModel:productTypeModel];
+    
+    [self showShopCartNumber];
+}
+
+- (void)showShopCartNumber
+{
+    NSMutableArray *shopCartShowNumber = [[FMDBConnection instance] getShopCartShowNumber];
+    if ([shopCartShowNumber count] > 0) {
+
+        self.totalNumLabel.text = shopCartShowNumber[0];
+        self.totalPriceLabel.text = [NSString stringWithFormat:@"￥%@", shopCartShowNumber[1]];
+    } else {
+        
+        self.totalNumLabel.text = @"0";
+        self.totalPriceLabel.text = @"￥0";
+    }
 }
 
 - (void)doSaveLocalDB:(ProductModel *)productModel productTypeModel:(ProductTypeModel *)productTypeModel
@@ -203,7 +218,7 @@
     [shopCartDic setObject:productModel.productNo forKey:@"commodityNumber"];
     [shopCartDic setObject:productModel.productKind forKey:@"commodityClass"];
     [shopCartDic setObject:productTypeModel.unitName forKey:@"commodityTypeName"];
-    [shopCartDic setObject:productTypeModel.productNum forKey:@"commodityAmount"];
+    [shopCartDic setObject:[NSNumber numberWithInteger:productTypeModel.productNum] forKey:@"commodityAmount"];
     
     ShopCartModel *shopCarModel = [[ShopCartModel alloc] initWithDict:shopCartDic];
     [[FMDBConnection instance] updateShopCartLogic:shopCarModel];
@@ -319,12 +334,14 @@
                     ShopCartModel *shopCartModel = shopCartArray[shopCartIndex];
                     if ([shopCartModel.productId isEqualToString:productModel.productId]  && [shopCartModel.unitId isEqualToString:productTypeModel.unitId]) {
                         
-                        productTypeModel.productNum = shopCartModel.shopCartNum;
+                        productTypeModel.productNum = [shopCartModel.shopCartNum integerValue];
                     }
                 }
             }
         }
     }
+    
+    [self showShopCartNumber];
 }
 
 - (void)loadTestData
@@ -342,8 +359,8 @@
             
             NSMutableDictionary *produtcTypeDict = [NSMutableDictionary dictionary];
             [produtcTypeDict setValue:array[m] forKey:@"unitName"];
-            [produtcTypeDict setValue:@"￥25" forKey:@"unitPrice"];
-            [produtcTypeDict setValue:[NSNumber numberWithInt:0] forKey:@"productNum"];
+            [produtcTypeDict setValue:@"25" forKey:@"unitPrice"];
+            [produtcTypeDict setValue:0 forKey:@"productNum"];
             
             ProductTypeModel *productTypeModel = [[ProductTypeModel alloc] initWithDict:produtcTypeDict];
             [typeArray addObject:productTypeModel];

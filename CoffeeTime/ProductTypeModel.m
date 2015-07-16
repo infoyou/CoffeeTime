@@ -16,17 +16,12 @@
     if (self = [super init])
     {
         self.unitId = dict[@"typeId"];
-        self.unitPrice = [NSString stringWithFormat:@"￥%@", dict[@"price"]];
         self.unitName = dict[@"type"];
-        self.productNum = @([dict[@"productNum"] integerValue]);
+        self.unitPrice = @([dict[@"price"] integerValue]);
+        self.productNum = [dict[@"productNum"] integerValue];
     }
     
     return  self;
 }
-
-//
-//-(NSString*)description{
-//    return [NSString stringWithFormat:@"%@--%@--%d",self.unitPrice,self.unitName,self.productNum];
-//}
 
 @end

@@ -39,4 +39,6 @@
 
 - (BOOL)isNeedClearShopCart:(NSString *)storeId;
 
+- (NSMutableArray *)getShopCartShowNumber;
+
 @end

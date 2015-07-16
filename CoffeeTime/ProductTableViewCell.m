@@ -41,13 +41,13 @@
 /**
  *  给单元格赋值
  *
- *  @param goodsModel 里面存放各个控件需要的数值
+ *  @param productModel 里面存放各个控件需要的数值
  */
--(void)addTheValue:(ProductModel *)goodsModel theValue:(ProductTypeModel*)goodList indexPath:(NSIndexPath *)indexPath
+-(void)addTheValue:(ProductModel *)productModel theValue:(ProductTypeModel *)productTypeModel indexPath:(NSIndexPath *)indexPath
 {
 
     // Icon
-    [self.goodsImage sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:goodsModel.imageUrl] andPlaceholderImage:[UIImage imageNamed:@"productPlaceHold.png"] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+    [self.goodsImage sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:productModel.imageUrl] andPlaceholderImage:[UIImage imageNamed:@"productPlaceHold.png"] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         //Nothing.
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         //Nothing.
@@ -55,29 +55,29 @@
     }];
     
     // Content
-    for (int goodsTypeListIndex=0; goodsTypeListIndex<goodsModel.productTypeArray.count; goodsTypeListIndex++) {
+    for (int goodsTypeListIndex=0; goodsTypeListIndex<productModel.productTypeArray.count; goodsTypeListIndex++) {
         
-       // NSLog(@"%@",[goodsModel.productTypeArray[0] description]);
+       // NSLog(@"%@",[productModel.productTypeArray[0] description]);
         
-        ProductTypeModel* goodList = goodsModel.productTypeArray[goodsTypeListIndex];
+        ProductTypeModel* productTypeModel = productModel.productTypeArray[goodsTypeListIndex];
         
         // SKU Type
         UILabel*sharpLabel = [[UILabel alloc]initWithFrame:CGRectMake(98, 20+30*(goodsTypeListIndex+1), 41, 20)];
-        sharpLabel.text = [NSString stringWithFormat:@"%@", goodList.unitName];
+        sharpLabel.text = [NSString stringWithFormat:@"%@", productTypeModel.unitName];
         sharpLabel.textAlignment=NSTextAlignmentCenter;
         [sharpLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
         [self addSubview:sharpLabel];
         
         // Price
         UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(147, 20+30*(goodsTypeListIndex+1), 54, 20)];
-        priceLabel.text=goodList.unitPrice;
-        priceLabel.textAlignment=NSTextAlignmentCenter;
+        priceLabel.text = [NSString stringWithFormat:@"￥%@", productTypeModel.unitPrice];
+        priceLabel.textAlignment = NSTextAlignmentCenter;
         [priceLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
         [self addSubview:priceLabel];
         
-        UILabel *numLabel=[[UILabel alloc]initWithFrame:CGRectMake(250, 20 + 30 * (goodsTypeListIndex+1) - 3, 25, 25)];
-        numLabel.text=[NSString stringWithFormat:@"%d",[goodList.productNum integerValue]];
-        numLabel.textAlignment=NSTextAlignmentCenter;
+        UILabel *numLabel = [[UILabel alloc]initWithFrame:CGRectMake(250, 20 + 30 * (goodsTypeListIndex+1) - 3, 25, 25)];
+        numLabel.text = [NSString stringWithFormat:@"%d", productTypeModel.productNum];
+        numLabel.textAlignment = NSTextAlignmentCenter;
         [numLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
         [self addSubview:numLabel];
         
@@ -112,7 +112,7 @@
         
     }
     
-    self.goodsTitle.text = goodsModel.productName;
+    self.goodsTitle.text = productModel.productName;
     
 }
 

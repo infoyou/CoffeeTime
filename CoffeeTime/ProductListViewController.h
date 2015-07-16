@@ -16,9 +16,9 @@
 @property (strong, nonatomic) IBOutlet UITableView *mTableView;
 
 - (IBAction)backButton:(id)sender;
-- (IBAction)jieSuan:(id)sender;
 
-@property (strong, nonatomic) IBOutlet UILabel *numLabel;
+@property (strong, nonatomic) IBOutlet UILabel *totalNumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
 @property (weak, nonatomic) IBOutlet UIView *confirmView;
 
 @end
