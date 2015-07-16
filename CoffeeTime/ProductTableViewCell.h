@@ -2,16 +2,17 @@
 //  ProductTableViewCell.h
 //  CoffeeTime
 //
-//  Created by fule on 15/6/30.
+//  Created by Adam on 15/6/30.
 //  Copyright (c) 2015年 fule. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "GoodsModel.h"
-#import "GoodsList.h"
-@protocol shangPinTableViewCellDelegate <NSObject>
+#import "ProductModel.h"
+#import "ProductTypeModel.h"
 
--(void)btnClick:(UITableViewCell *)cell andFlag:(int)flag;
+@protocol ProductTableViewCellDelegate <NSObject>
+
+-(void)btnClick:(UITableViewCell *)cell andFlag:(NSInteger)flag;
 @end
 
 @interface ProductTableViewCell : UITableViewCell
@@ -20,13 +21,16 @@
 @property (strong, nonatomic) IBOutlet UIImageView *goodsImage;
 @property (strong, nonatomic) IBOutlet UIButton *addButton;
 @property (strong, nonatomic) IBOutlet UIButton *subButton;
-@property (strong, nonatomic) IBOutlet UILabel *goodsPrice;
+@property (strong, nonatomic) IBOutlet UILabel *unitPrice;
 @property (strong, nonatomic) IBOutlet UILabel *goodNum;
+
 - (IBAction)addButton:(id)sender;
 - (IBAction)subButton:(id)sender;
-@property (strong, nonatomic) IBOutlet UILabel *goodsSharp;
 
-@property(assign,nonatomic)id<shangPinTableViewCellDelegate>delegate;
--(void)addTheValue:(GoodsModel *)goodsModel theValue:(GoodsList*)goodList indexPath:(NSIndexPath *)indexPath;
+@property (strong, nonatomic) IBOutlet UILabel *unitName;
+
+@property (assign,nonatomic) id<ProductTableViewCellDelegate> delegate;
+
+-(void)addTheValue:(ProductModel *)goodsModel theValue:(ProductTypeModel*)goodList indexPath:(NSIndexPath *)indexPath;
 
 @end

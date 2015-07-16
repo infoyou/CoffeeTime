@@ -17,6 +17,7 @@
 @interface CommonUtils : NSObject
 
 #pragma mark - date time
++ (NSString *)currentTimeInterval;
 + (NSString *)currentHourTime;
 + (NSString *)currentHourMinSecondTime;
 + (NSString *)currentDateStr;

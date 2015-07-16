@@ -2,7 +2,7 @@
 //  StoreModel.h
 //  CoffeeTime
 //
-//  Created by fule on 15/7/1.
+//  Created by Adam on 15/7/1.
 //  Copyright (c) 2015年 fule. All rights reserved.
 //
 

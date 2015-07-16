@@ -1,5 +1,5 @@
 //
-//  HomeViewController.h
+//  SettingViewController.h
 //  CoffeeTime
 //
 //  Created by Adam on 15/6/24.
@@ -9,11 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "RootViewController.h"
 
-@interface HomeViewController : RootViewController
+@interface SettingViewController : RootViewController
 
-//@property (strong, nonatomic) IBOutlet UIView *bannerView;
 @property (strong, nonatomic) IBOutlet UITableView *mTableView;
-
-@property (weak, nonatomic) IBOutlet UILabel *locationTxt;
 
 @end

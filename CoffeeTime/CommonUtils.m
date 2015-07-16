@@ -17,7 +17,17 @@
 static NSBundle *bundle = nil;
 
 #pragma mark - date time
++ (NSString *)currentTimeInterval {
+    
+    NSDate *today = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval interval = [today timeIntervalSince1970];
+    NSString *dateInterval = [NSString stringWithFormat:@"%.0f", interval];
+    
+    return dateInterval;
+}
+
 + (NSString *)currentHourTime {
+    
     NSDate *today = [NSDate dateWithTimeIntervalSinceNow:0];
 	NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
 	[dateFormat setDateFormat:@"yyyy-MM-dd HH"];
@@ -611,6 +621,9 @@ static NSBundle *bundle = nil;
     if (dataDict != nil) {
         [dataDict setObject:[AppManager instance].longitude forKey:@"lng"];
         [dataDict setObject:[AppManager instance].latitude forKey:@"lat"];
+        [dataDict setObject:[CommonUtils currentTimeInterval] forKey:@"time"];
+        [dataDict setObject:[AppManager instance].userTicket forKey:@"pk"];
+        
         [specialDict setObject:dataDict forKey:@"data"];
     } else {
         [specialDict setObject:@"" forKey:@"data"];

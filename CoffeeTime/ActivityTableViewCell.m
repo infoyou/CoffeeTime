@@ -2,7 +2,7 @@
 //  ActivityTableViewCell.m
 //  CoffeeTime
 //
-//  Created by fule on 15/7/7.
+//  Created by Adam on 15/7/7.
 //  Copyright (c) 2015年 fule. All rights reserved.
 //
 
@@ -32,12 +32,12 @@
 }
 -(void)addButton:(UIButton*)btn{
     
-    [self.delegate btnClick:self andFlag:(int)btn.tag];
+    [self.delegate btnClick:self andFlag:(NSInteger)btn.tag];
     
 }
 -(void)subButton:(UIButton*)btn{
     
-    [self.delegate btnClick:self andFlag:(int)btn.tag];
+    [self.delegate btnClick:self andFlag:(NSInteger)btn.tag];
     
 }
 

@@ -2,6 +2,7 @@
 #import "FMDBConnection.h"
 #import "GlobalConstants.h"
 #import "AppManager.h"
+#import "ShopCartModel.h"
 
 static FMDBConnection *instance = nil;
 
@@ -11,6 +12,7 @@ static FMDBConnection *instance = nil;
 
 // 获取一个instance实例，如果有必要的话，实例化一个
 + (FMDBConnection *)instance {
+    
     if (instance == nil) {
         instance = [[super allocWithZone:NULL] init];
     }
@@ -49,17 +51,18 @@ static FMDBConnection *instance = nil;
 
 #pragma mark - init db
 - (NSString *)documentsDirectory {
-	return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
 }
 
 - (NSString *)getDBPath:(NSString *)dbFileName {
     
-	NSString *docDir = [self documentsDirectory];
-	NSString *dbPath = [docDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_V%@.sqlite", dbFileName, VERSION]];
-	return dbPath;
+    NSString *docDir = [self documentsDirectory];
+    NSString *dbPath = [docDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_V%@.sqlite", dbFileName, VERSION]];
+    return dbPath;
 }
 
 - (void)setup {
+    
     if (self.db == nil) {
         self.db = [FMDatabase databaseWithPath:[self getDBPath:PROJECT_DB_NAME]];
     }
@@ -78,63 +81,65 @@ static FMDBConnection *instance = nil;
 }
 
 
+//-------------------------------ShopCart-----------------------------
 - (void)createTables {
-	
+    
     BOOL res = NO;
     
-    //-------------------------------assess cache-----------------------------
+    // storeId TEXT,    //门店Id
+    // productId TEXT,  //商品Id
+    // typeId TEXT,     //种类Id
+    // shopCartNum int,//商品数量
+    // unitPrice TEXT,//商品价格
+    // storeName TEXT,  //门店名称
+    // productName TEXT,//商品名称
+    // unitName TEXT,   //种类名称
+    // productNo TEXT //商品编码
     
-	NSString *createUserTableMsg = @"create table if not exists assess ( assessId TEXT PRIMARY KEY, logicId TEXT, logicType int, assessType int, attachType int, fileName TEXT, pawnPrice TEXT,  marketPrice TEXT,  usedPrice TEXT,  mark1 TEXT,  mark2 TEXT,  mark3 TEXT, mark4 TEXT, mark5 TEXT,  mark6 TEXT,  mark7 TEXT,  mark8 TEXT, mark9 TEXT,  mark10 TEXT )";
+    NSString *createTabMsg = @"create table if not exists ShopCart ( storeId TEXT,                                                                                        productId TEXT, typeId TEXT, shopCartNum int,  unitPrice TEXT,  storeName TEXT,                                                                                               productName TEXT, unitName TEXT,  productNo TEXT, PRIMARY KEY (storeId, productId, typeId) )";
     
-    res = [self.db executeUpdate:createUserTableMsg];
+    res = [self.db executeUpdate:createTabMsg];
     
-	if (!res) {
-        DLog(@"error when creating assess table");
+    if (!res) {
+        DLog(@"error when creating ShopCart table");
     } else {
-        DLog(@"success to creating assess table");
+        DLog(@"success to creating ShopCart table");
     }
+    
 }
 //------------------------------------------------------------
 
-// ------------------------ User start -------------------------------
-    
+
 #pragma mark - do business action
-- (void)insertAssessObjectDB:(AssessObject *)surveyInfo
+- (void)insertShopCarModelDB:(ShopCartModel *)shopInfo
 {
     [self.db beginTransaction];
     BOOL isRoolBack = NO;
     
-    static NSString *sql = @"INSERT INTO assess VALUES(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?)";
+    
+    static NSString *sql = @"INSERT INTO ShopCart VALUES(?,?,?,?,?, ?,?,?,?)";
     
     @try
+    
     {
-            NSArray *argumentsArray = [[NSArray alloc] initWithObjects:surveyInfo.assessId,
-                                       surveyInfo.logicId,
-                                       surveyInfo.logicType,
-                                       surveyInfo.assessType,
-                                       surveyInfo.attachType,
-                                       surveyInfo.fileName == nil ? @"" : surveyInfo.fileName,
-                                       surveyInfo.pawnPrice == nil ? @"" : surveyInfo.pawnPrice,
-                                       surveyInfo.marketPrice == nil ? @"" : surveyInfo.marketPrice,
-                                       surveyInfo.usedPrice == nil ? @"" : surveyInfo.usedPrice,
-                                       surveyInfo.mark1 == nil ? @"" : surveyInfo.mark1,
-                                       surveyInfo.mark2 == nil ? @"" : surveyInfo.mark2,
-                                       surveyInfo.mark3 == nil ? @"" : surveyInfo.mark3,
-                                       surveyInfo.mark4 == nil ? @"" : surveyInfo.mark4,
-                                       surveyInfo.mark5 == nil ? @"" : surveyInfo.mark5,
-                                       surveyInfo.mark6 == nil ? @"" : surveyInfo.mark6,
-                                       surveyInfo.mark7 == nil ? @"" : surveyInfo.mark7,
-                                       surveyInfo.mark8 == nil ? @"" : surveyInfo.mark8,
-                                       surveyInfo.mark9 == nil ? @"" : surveyInfo.mark9,
-                                       surveyInfo.mark10 == nil ? @"" : surveyInfo.mark10,
-                                       nil];
-            
-            BOOL res = [self.db executeUpdate:sql
-                         withArgumentsInArray:argumentsArray];
-            
-            if (!res) {
-                DLog(@"insert assess error !");
-            }
+        NSArray *argumentsArray = [[NSArray alloc] initWithObjects:
+                                   shopInfo.shopId,
+                                   shopInfo.productId,
+                                   shopInfo.unitId,
+                                   shopInfo.shopCartNum,
+                                   shopInfo.unitPrice,
+                                   shopInfo.shopName,
+                                   shopInfo.productName,
+                                   shopInfo.unitName,
+                                   shopInfo.productNo,
+                                   nil];
+        
+        BOOL res = [self.db executeUpdate:sql
+                     withArgumentsInArray:argumentsArray];
+        
+        if (!res) {
+            DLog(@"insert ShopCart error !");
+        }
     }
     @catch (NSException *exception)
     {
@@ -152,42 +157,37 @@ static FMDBConnection *instance = nil;
 }
 
 #pragma mark - do business action
-- (void)insertAllAssessObjectDB:(NSArray *)userList
+- (void)insertAllShopCarModelDB:(NSArray *)userList
 {
     [self.db beginTransaction];
     BOOL isRoolBack = NO;
     
-    AssessObject *surveyInfo = nil;
-    static NSString *sql = @"INSERT INTO assess VALUES(?,?,?,?,?, ?,?,?,?,?)";
+    ShopCartModel *shopInfo = nil;
+    static NSString *sql = @"INSERT INTO ShopCart VALUES(?,?,?,?,?, ?,?,?,?)";
     
     @try
     {
         
         for (int i = 0; i < userList.count; i++) {
-            surveyInfo = [userList objectAtIndex:i];
+            shopInfo = [userList objectAtIndex:i];
             
-            
-            NSArray *argumentsArray = [[NSArray alloc] initWithObjects:surveyInfo.assessId,
-                                       surveyInfo.logicId,
-                                       surveyInfo.logicType,
-                                       surveyInfo.assessType,
-                                       surveyInfo.mark1,
-                                       surveyInfo.mark2,
-                                       surveyInfo.mark3,
-                                       surveyInfo.mark4,
-                                       surveyInfo.mark5,
-                                       surveyInfo.mark6,
-                                       surveyInfo.mark7,
-                                       surveyInfo.mark8,
-                                       surveyInfo.mark9,
-                                       surveyInfo.mark10,
+            NSArray *argumentsArray = [[NSArray alloc] initWithObjects:
+                                       shopInfo.shopId,
+                                       shopInfo.productId,
+                                       shopInfo.unitId,
+                                       shopInfo.shopCartNum,
+                                       shopInfo.unitPrice,
+                                       shopInfo.shopName,
+                                       shopInfo.productName,
+                                       shopInfo.unitName,
+                                       shopInfo.productNo,
                                        nil];
             
             BOOL res = [self.db executeUpdate:sql
                          withArgumentsInArray:argumentsArray];
             
             if (!res) {
-                DLog(@"insert assess error !");
+                DLog(@"insert ShopCart error !");
             }
         }
     }
@@ -206,174 +206,192 @@ static FMDBConnection *instance = nil;
     }
 }
 
-#pragma mark - update business action
-- (void)updateAssessObjectDB:(AssessObject *)surveyInfo
+- (BOOL)getAllShopCartDataFromDB
 {
-    [self.db beginTransaction];
-    BOOL isRoolBack = NO;
+    NSInteger count = 0;
     
-    static NSString *sql = @"update assess set assessId=?, user=?, city=?, phone=?, projectcode=?, remark=?, status=? where assessId = ?";
+    NSString *sql = @"select * from ShopCart";
+    FMResultSet *res = [self.db executeQuery:sql];
     
-    @try
-    {
-            
-        BOOL res = [self.db executeUpdate:sql
-                     withArgumentsInArray:@[surveyInfo.assessId,
-                                            surveyInfo.logicId,
-                                            surveyInfo.mark1,
-                                            surveyInfo.mark2,
-                                            surveyInfo.mark3,
-                                            surveyInfo.mark4,
-                                            surveyInfo.mark5,
-                                            surveyInfo.mark6,
-                                            [NSNumber numberWithInteger:surveyInfo.logicType],
-                                            surveyInfo.assessId]];
-        
-        if (!res) {
-            DLog(@"update assess error!");
-        }
+    while ([res next]) {
+        count ++;
     }
-    @catch (NSException *exception)
-    {
-        NSLog(@"Exception name=%@",exception.name);
-        NSLog(@"Exception reason=%@",exception.reason);
-        isRoolBack = YES;
-        [self.db rollback];
+    
+    if (count > 0) {
+        return YES;
     }
-    @finally
-    {
-        if (!isRoolBack) {
-            [self.db commit];
-        }
-    }
+    
+    return NO;
 }
 
-- (AssessObject *)getAllSurveyDataFromDB
+- (BOOL)getCurrentShopCartDataFromDB:(NSString *)storeId
 {
-    AssessObject *AssessObject = nil;
+    NSInteger count = 0;
     
-    NSString *sql = @" select * from assess where status != -1 ";
+    NSString *sql = [NSString stringWithFormat:@"select * from ShopCart where storeId == %@", storeId];
     FMResultSet *res = [self.db executeQuery:sql];
     
     while ([res next]) {
-        //        AssessObject = [[self parseAssessInfo:res] retain];
-        AssessObject = [self parseAssessInfo:res];
+        count ++;
     }
     
-    return AssessObject;
-}
-
-- (AssessObject *)getAssessRecordById:(NSString *)assessId {
-    
-    AssessObject *backVal = nil;
-    
-    NSString *sql = [NSString stringWithFormat:@"select * from assess where assessId == '%@'", assessId];
-    FMResultSet *res = [self.db executeQuery:sql];
-    
-    while ([res next]) {
-        backVal = [self parseAssessInfo:res];
+    if (count > 0) {
+        return YES;
     }
     
-    return backVal;
+    return NO;
 }
 
-- (NSMutableArray *)getAssessRecordArrayByLogicType:(NSInteger)logicType {
-
-    NSMutableArray *assessArray = [NSMutableArray array];
-
-    NSString *sql = [NSString stringWithFormat:@"select * from assess where assessType == %d order by assessId desc", logicType];
-    FMResultSet *res = [self.db executeQuery:sql];
-    
-    while ([res next]) {
-        [assessArray addObject:[self parseAssessInfo:res]];
-    }
-    
-    return assessArray;
-}
-
-- (NSMutableArray *)getUserEmailByKeyword:(NSString *)assessId {
-    
-    NSMutableArray *surveyArray = [NSMutableArray array];
-    
-//    NSString *sql = [NSString stringWithFormat:@"select * from assess where userEmail like '%@%%'", keyword];
-    NSString *sql = [NSString stringWithFormat:@"select * from assess where assessId like '%@'", assessId];
-    FMResultSet *res = [self.db executeQuery:sql];
-    
-    while ([res next]) {
-        [surveyArray addObject:[res stringForColumn:@"status"]];
-    }
-    
-    return surveyArray;
-}
-
-- (AssessObject *)parseAssessInfo:(FMResultSet *)res
+- (NSMutableArray *)getStoreAllCartFromDB:(NSString *)storeId
 {
     
-    AssessObject *assessInfo = [[AssessObject alloc] init];
+    NSMutableArray *shopCartArray = [NSMutableArray array];
     
-    assessInfo.assessId = [res stringForColumn:@"assessId"];
-    assessInfo.logicId = [res stringForColumn:@"logicId"];
-    assessInfo.logicType = [res intForColumn:@"logicType"];
-    assessInfo.assessType = [res intForColumn:@"assessType"];
+    NSString *sql = [NSString stringWithFormat:@"select * from ShopCart where storeId == %@ order by productNo desc", storeId];
+    FMResultSet *res = [self.db executeQuery:sql];
     
-    assessInfo.attachType = [res intForColumn:@"attachType"];
-    assessInfo.fileName = [res stringForColumn:@"fileName"];
-    assessInfo.pawnPrice = [res stringForColumn:@"pawnPrice"];
-    assessInfo.marketPrice = [res stringForColumn:@"marketPrice"];
-    assessInfo.usedPrice = [res stringForColumn:@"usedPrice"];
+    while ([res next]) {
+        [shopCartArray addObject:[self parseShopCartModel:res]];
+    }
     
-    assessInfo.mark1 = [res stringForColumn:@"mark1"];
-    assessInfo.mark2 = [res stringForColumn:@"mark2"];
-    assessInfo.mark3 = [res stringForColumn:@"mark3"];
-    assessInfo.mark4 = [res stringForColumn:@"mark4"];
-    assessInfo.mark5 = [res stringForColumn:@"mark5"];
-    assessInfo.mark6 = [res stringForColumn:@"mark6"];
-    assessInfo.mark7 = [res stringForColumn:@"mark7"];
-    assessInfo.mark8 = [res stringForColumn:@"mark8"];
-    assessInfo.mark9 = [res stringForColumn:@"mark9"];
-    assessInfo.mark10 = [res stringForColumn:@"mark10"];
-    
-    return assessInfo;
+    return shopCartArray;
 }
 
-- (void)delUserTable {
+- (ShopCartModel *)parseShopCartModel:(FMResultSet *)res
+{
     
-    NSString *sql = @"delete from assess";
+    ShopCartModel *shopCartModel = [[ShopCartModel alloc] init];
+    
+    shopCartModel.shopId = [res stringForColumn:@"storeId"];
+    shopCartModel.productId = [res stringForColumn:@"productId"];
+    shopCartModel.unitId = [res stringForColumn:@"typeId"];
+    shopCartModel.shopCartNum = @([res intForColumn:@"shopCartNum"]);
+    shopCartModel.unitPrice = [res stringForColumn:@"unitPrice"];
+    shopCartModel.shopName = [res stringForColumn:@"storeName"];
+    shopCartModel.productName = [res stringForColumn:@"productName"];
+    shopCartModel.unitName = [res stringForColumn:@"unitName"];
+    shopCartModel.productNo=[res stringForColumn:@"productNo"];
+    
+    return shopCartModel;
+}
+
+- (void)delShopCartTableBy:(ShopCartModel *)shopCart
+{
+    
+    NSString *sql = [NSString stringWithFormat:@"delete from ShopCart where storeId == %@ and productId == %@ and typeId == %@", shopCart.shopId, shopCart.productId, shopCart.unitId];
     FMResultSet *res = [self.db executeQuery:sql];
     
     if ([res next]) {
     }
 }
 
-- (NSString *)getAvailableSurveyResult
+- (void)delAllShopCartTableData
 {
     
-    NSMutableString *totalStr = [NSMutableString string];
-    
-    NSString *sql = [NSString stringWithFormat:@"select * from assess where status != -1"];
+    NSString *sql = @"delete from ShopCart";
     FMResultSet *res = [self.db executeQuery:sql];
+    
+    if ([res next]) {
+    }
+}
+
+- (BOOL)isExistShopCat:(ShopCartModel *)shopInfo
+{
+    
     NSInteger index = 0;
     
+    NSString *sql = [NSString stringWithFormat:@"select * from ShopCart where storeId == %@ and productId == %@ and typeId == %@", shopInfo.shopId, shopInfo.productId, shopInfo.unitId];
+    FMResultSet *res = [self.db executeQuery:sql];
+    
     while ([res next]) {
-        
-        AssessObject *assessObject = [[AssessObject alloc] init];
-        
-        assessObject.logicType = [res intForColumn:@"logicType"];
-        assessObject.assessId = [res stringForColumn:@"assessId"];
-        
-        [totalStr appendFormat:@"status=%ld&q_id=%@##", (long)assessObject.logicType, assessObject.assessId];
         index ++;
     }
     
     if (index > 0) {
-        return totalStr;
-    } else {
-        return @"";
+        return YES;
     }
     
-    return totalStr;
+    return NO;
 }
 
-// ------------------------ User end -------------------------------
+#pragma mark - update business action
+- (void)updateShopCartDB:(ShopCartModel *)shopCart
+{
+    [self.db beginTransaction];
+    BOOL isRoolBack = NO;
+    
+    static NSString *sql = @"update ShopCart set shopCartNum = ? where storeId == ? and productId == ? and typeId == ?";
+    
+    @try
+    {
+        
+        BOOL res = [self.db executeUpdate:sql
+                     withArgumentsInArray:@[shopCart.shopCartNum,
+                                            shopCart.shopId,
+                                            shopCart.productId,
+                                            shopCart.unitId]];
+        
+        if (!res) {
+            DLog(@"update ShopCart error!");
+        }
+    }
+    @catch (NSException *exception)
+    {
+        NSLog(@"Exception name=%@", exception.name);
+        NSLog(@"Exception reason=%@", exception.reason);
+        isRoolBack = YES;
+        [self.db rollback];
+    }
+    @finally
+    {
+        if (!isRoolBack) {
+            [self.db commit];
+        }
+    }
+}
+
+- (void)updateShopCartLogic:(ShopCartModel *)shopCarModel
+{
+    NSInteger shopCartAmount = [shopCarModel.shopCartNum integerValue];
+    
+    if (shopCartAmount > 0) {
+        
+        BOOL isExit = [[FMDBConnection instance] isExistShopCat:shopCarModel];
+        
+        // 是否存在
+        if (isExit == YES) {
+            
+            // 修改
+            [[FMDBConnection instance] updateShopCartDB:shopCarModel];
+            
+        } else {
+            
+            // 新建
+            [[FMDBConnection instance] insertShopCarModelDB:shopCarModel];
+            
+        }
+    } else {
+        
+        // 删除
+        [[FMDBConnection instance] delShopCartTableBy:shopCarModel];
+    }
+}
+
+- (BOOL)isNeedClearShopCart:(NSString *)storeId
+{
+    if (![self getAllShopCartDataFromDB]) {
+        // 购物车没有数据
+    } else {
+        // 购物车有数据
+        if (![self getCurrentShopCartDataFromDB:storeId]) {
+            // 但不是当前门店数据
+            return YES; // 提示需要清理购物车【目前一个订单只支持一家门店】
+        } else {
+            // 是当前门店数据
+        }
+    }
+    
+    return NO;
+}
 
 @end

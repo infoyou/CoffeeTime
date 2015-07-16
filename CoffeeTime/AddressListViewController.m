@@ -199,7 +199,7 @@ NSInteger selIndex;
     UITouch *touch = [touches anyObject];
     CGPoint currentTouchPosition = [touch locationInView:self.mTableView];
     
-    NSIndexPath *indexPath = [self.mTableView indexPathForRowAtPoint: currentTouchPosition];
+    NSIndexPath *indexPath = [self.mTableView indexPathForRowAtPoint:currentTouchPosition];
     if (indexPath != nil)
     {
         AddressModel *addressModel = (AddressModel *)infoArr[indexPath.row];

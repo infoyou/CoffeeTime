@@ -2,7 +2,7 @@
 //  DingDanRenTableViewCell.h
 //  CoffeeTime
 //
-//  Created by fule on 15/7/10.
+//  Created by Adam on 15/7/10.
 //  Copyright (c) 2015年 fule. All rights reserved.
 //
 

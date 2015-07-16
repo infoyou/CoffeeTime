@@ -2,13 +2,14 @@
 //  ProductTableViewCell.m
 //  CoffeeTime
 //
-//  Created by fule on 15/6/30.
+//  Created by Adam on 15/6/30.
 //  Copyright (c) 2015年 fule. All rights reserved.
 //
 
 #import "ProductTableViewCell.h"
-#import "GoodsModel.h"
-#import "GoodsList.h"
+#import "ProductModel.h"
+#import "ProductTypeModel.h"
+#import "UIImageView+WebCache.h"
 
 @implementation ProductTableViewCell
 
@@ -22,7 +23,7 @@
     // Configure the view for the selected state
 }
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 
 {
     
@@ -42,31 +43,40 @@
  *
  *  @param goodsModel 里面存放各个控件需要的数值
  */
--(void)addTheValue:(GoodsModel *)goodsModel theValue:(GoodsList*)goodList indexPath:(NSIndexPath *)indexPath
+-(void)addTheValue:(ProductModel *)goodsModel theValue:(ProductTypeModel*)goodList indexPath:(NSIndexPath *)indexPath
 {
 
-    for (int goodsTypeListIndex=0; goodsTypeListIndex<goodsModel.goodsArray.count; goodsTypeListIndex++) {
+    // Icon
+    [self.goodsImage sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:goodsModel.imageUrl] andPlaceholderImage:[UIImage imageNamed:@"productPlaceHold.png"] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        //Nothing.
+    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        //Nothing.
+        self.goodsImage.image = image;
+    }];
+    
+    // Content
+    for (int goodsTypeListIndex=0; goodsTypeListIndex<goodsModel.productTypeArray.count; goodsTypeListIndex++) {
         
-       // NSLog(@"%@",[goodsModel.goodsArray[0] description]);
+       // NSLog(@"%@",[goodsModel.productTypeArray[0] description]);
         
-        GoodsList* goodList = goodsModel.goodsArray[goodsTypeListIndex];
+        ProductTypeModel* goodList = goodsModel.productTypeArray[goodsTypeListIndex];
         
         // SKU Type
         UILabel*sharpLabel = [[UILabel alloc]initWithFrame:CGRectMake(98, 20+30*(goodsTypeListIndex+1), 41, 20)];
-        sharpLabel.text = [NSString stringWithFormat:@"%@", goodList.goodsSharp];
+        sharpLabel.text = [NSString stringWithFormat:@"%@", goodList.unitName];
         sharpLabel.textAlignment=NSTextAlignmentCenter;
         [sharpLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
         [self addSubview:sharpLabel];
         
         // Price
         UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(147, 20+30*(goodsTypeListIndex+1), 54, 20)];
-        priceLabel.text=goodList.goodsPrice;
+        priceLabel.text=goodList.unitPrice;
         priceLabel.textAlignment=NSTextAlignmentCenter;
         [priceLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
         [self addSubview:priceLabel];
         
         UILabel *numLabel=[[UILabel alloc]initWithFrame:CGRectMake(250, 20 + 30 * (goodsTypeListIndex+1) - 3, 25, 25)];
-        numLabel.text=[NSString stringWithFormat:@"%d",goodList.goodsNum];
+        numLabel.text=[NSString stringWithFormat:@"%d",[goodList.productNum integerValue]];
         numLabel.textAlignment=NSTextAlignmentCenter;
         [numLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
         [self addSubview:numLabel];
@@ -102,18 +112,18 @@
         
     }
     
-    self.goodsTitle.text = goodsModel.goodsTitle;
+    self.goodsTitle.text = goodsModel.productName;
     
 }
 
 -(void)addButton:(UIButton*)btn{
    
-    [self.delegate btnClick:self andFlag:(int)btn.tag];
+    [self.delegate btnClick:self andFlag:(NSInteger)btn.tag];
 
 }
 -(void)subButton:(UIButton*)btn{
    
-    [self.delegate btnClick:self andFlag:(int)btn.tag];
+    [self.delegate btnClick:self andFlag:(NSInteger)btn.tag];
 
 }
 

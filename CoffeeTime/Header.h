@@ -2,7 +2,7 @@
 //  Header.h
 //  CoffeeTime
 //
-//  Created by fule on 15/6/25.
+//  Created by Adam on 15/6/25.
 //  Copyright (c) 2015年 fule. All rights reserved.
 //
 
@@ -15,7 +15,6 @@
 #import "ProfileViewController.h"
 #import "ActivityViewController.h"
 #import "ProductListViewController.h"
-#import "welcomeViewController.h"
 #import "ShopCarViewController.h"
 #import "OrderDetailViewController.h"
 #import "HeDanViewController.h"

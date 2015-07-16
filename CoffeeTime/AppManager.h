@@ -20,13 +20,17 @@
 @property (nonatomic, copy) NSString *userBonusNum;
 @property (nonatomic, copy) NSString *userAddressNum;
 
-@property (nonatomic, copy) NSString *userDefaultAddress;
-
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, copy) NSString *userPswd;
 @property (nonatomic, copy) NSString *userEmail;
+
+@property (nonatomic, copy) NSString *userDefaultAddress;
+
 @property (nonatomic, copy) NSString *userProvince;
 @property (nonatomic, copy) NSString *userImageUrl;
+
+@property (nonatomic, copy) NSString *selStoreId;
+@property (nonatomic, copy) NSString *selStoreName;
 
 // Product
 @property (nonatomic, copy) NSString *productKeyWord;

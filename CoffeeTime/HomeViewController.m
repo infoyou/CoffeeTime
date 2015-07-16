@@ -2,7 +2,7 @@
 //  HomeViewController.m
 //  CoffeeTime
 //
-//  Created by fule on 15/6/24.
+//  Created by Adam on 15/6/24.
 //  Copyright (c) 2015年 fule. All rights reserved.
 //
 
@@ -164,7 +164,7 @@
     UIButton *btnBuy = (UIButton *)[cell viewWithTag:20];
     btnBuy.layer.cornerRadius = 4;
     btnBuy.layer.masksToBounds = YES;
-    [btnBuy addTarget:self action:@selector(doBuy:) forControlEvents:UIControlEventTouchUpInside];
+    [btnBuy addTarget:self action:@selector(doBuy:event:) forControlEvents:UIControlEventTouchUpInside];
     
     // Mark
     NSInteger typeCount = [storeModel.productTypeArray count];
@@ -226,10 +226,24 @@
     [self showHUDWithText:@"商家查询"];
 }
 
-- (void)doBuy:(id)sender {
+- (void)doBuy:(id)sender event:(id)event
+{
     
-    ProductListViewController *vc = [[ProductListViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    NSSet *touches = [event allTouches];
+    UITouch *touch = [touches anyObject];
+    CGPoint currentTouchPosition = [touch locationInView:self.mTableView];
+    
+    NSIndexPath *indexPath = [self.mTableView indexPathForRowAtPoint:currentTouchPosition];
+    if (indexPath != nil)
+    {
+        StoreModel *storeModel = (StoreModel *)storeArray[indexPath.row];
+     
+        [AppManager instance].selStoreId = storeModel.storeId;
+        [AppManager instance].selStoreName = storeModel.name;
+        
+        ProductListViewController *vc = [[ProductListViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark - 交互
@@ -238,8 +252,8 @@
 {
     
     NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
-    [dataDict setObject:@"18721203520" forKey:@"username"];
-    [dataDict setObject:@"123456" forKey:@"password"];
+    [dataDict setObject:[AppManager instance].userId forKey:@"username"];
+    [dataDict setObject:[AppManager instance].userPswd forKey:@"password"];
     
     NSMutableDictionary *paramDict = [CommonUtils getParamDict:@"userLogin"
                                                       dataDict:dataDict];
@@ -276,9 +290,9 @@
                                          
                                          if ( [errCodeStr integerValue] == 0 ) {
                                              [AppManager instance].userTicket = (NSString *)[[backDic valueForKey:@"result"] valueForKey:@"ticket"];
+                                             [AppManager instance].userId = (NSString *)[[backDic valueForKey:@"result"] valueForKey:@"userId"];
                                              
                                              [self transUserInfo];
-                                             //                                             [self transStoreInfo];
                                          } else {
                                              
                                              [self showHUDWithText:[backDic valueForKey:@"msg"]];
@@ -294,7 +308,8 @@
 {
     
     NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
-    [dataDict setObject:@"18721203520" forKey:@"username"];
+    
+    [dataDict setObject:[AppManager instance].userId forKey:@"userId"];
     [dataDict setObject:[AppManager instance].userTicket forKey:@"ticket"];
     
     NSMutableDictionary *paramDict = [CommonUtils getParamDict:@"userInfo"
@@ -354,12 +369,7 @@
 - (void)transStoreInfo
 {
     
-    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
-    NSTimeInterval a=[dat timeIntervalSince1970];
-    NSString *dateId = [NSString stringWithFormat:@"%.0f", a];
-    
     NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
-    [dataDict setObject:dateId forKey:@"time"];
     [dataDict setObject:[AppManager instance].userTicket forKey:@"pk"];
     
     NSMutableDictionary *paramDict = [CommonUtils getParamDict:@"getShopListInfo"
@@ -397,7 +407,7 @@
                                          
                                          if ( [errCodeStr integerValue] == 0 ) {
                                              
-                                             NSArray *resultArray = (NSArray *)[(NSArray *)[backDic valueForKey:@"result"] valueForKey:@"shop_list"];
+                                             NSArray *resultArray = (NSArray *)[(NSArray *)[backDic valueForKey:@"result"] valueForKey:@"shopList"];
                                              
                                              NSInteger resultCount = [resultArray count];
                                              
@@ -408,18 +418,16 @@
                                                  
                                                  StoreModel *storeModel = [[StoreModel alloc] initWithDict:resultDic];
                                                  
-                                                 /*
-                                                  storeModel.storeId = (NSString *)[resultDic valueForKey:@"shop_detail_id"];
+                                                  storeModel.storeId = (NSString *)[resultDic valueForKey:@"shopDetailId"];
                                                   storeModel.distance = (NSString *)[resultDic valueForKey:@"distance"];
-                                                  storeModel.imageUrl = (NSString *)[resultDic valueForKey:@"pic_url"];
-                                                  storeModel.address = (NSString *)[resultDic valueForKey:@"shop_address"];
-                                                  storeModel.brand = (NSString *)[resultDic valueForKey:@"shop_brands"];
-                                                  storeModel.name = (NSString *)[resultDic valueForKey:@"shop_name"];
+                                                  storeModel.imageUrl = (NSString *)[resultDic valueForKey:@"picUrl"];
+                                                  storeModel.address = (NSString *)[resultDic valueForKey:@"shopAddress"];
+                                                  storeModel.brand = (NSString *)[resultDic valueForKey:@"shopBrands"];
+                                                  storeModel.name = (NSString *)[resultDic valueForKey:@"shopName"];
                                                   storeModel.transpotation = (NSString *)[resultDic valueForKey:@"transpotation"];
                                                   
-                                                  NSArray *typeArray = (NSArray *)[resultDic valueForKey:@"shop_type_list"];
+                                                  NSArray *typeArray = (NSArray *)[resultDic valueForKey:@"shopTypeList"];
                                                   storeModel.productTypeArray = typeArray;
-                                                  */
                                                  
                                                  [storeArray addObject:storeModel];
                                              }

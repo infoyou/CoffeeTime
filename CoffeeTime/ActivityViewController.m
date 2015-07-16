@@ -2,7 +2,7 @@
 //  ActivityViewController.m
 //  CoffeeTime
 //
-//  Created by fule on 15/6/24.
+//  Created by Adam on 15/6/24.
 //  Copyright (c) 2015年 fule. All rights reserved.
 //
 
@@ -111,7 +111,7 @@
  *  @param cell 当前单元格
  *  @param flag 按钮标识，11 为减按钮，12为加按钮
  */
--(void)btnClick:(UITableViewCell *)cell andFlag:(int)flag
+-(void)btnClick:(UITableViewCell *)cell andFlag:(NSInteger)flag
 {
     NSLog(@"%d",flag);
     int i=flag/10;//加减

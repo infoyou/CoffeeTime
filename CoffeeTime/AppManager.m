@@ -48,27 +48,27 @@ static AppManager *shareInstance = nil;
 - (void)initUser
 {
     
-    [AppManager instance].longitude = @"121";
-    [AppManager instance].latitude = @"31";
+    [AppManager instance].longitude = @"121.473";
+    [AppManager instance].latitude = @"31.2154";
     
     NSString *userIdStr = [self userIdRemembered];
     if (userIdStr != nil && userIdStr.length > 0) {
         
         [AppManager instance].userId = userIdStr;
+        [AppManager instance].userPswd = [self pswdRemembered];
         [AppManager instance].userName = [self userNameRemembered];
         [AppManager instance].userNickName = [self nickNameRemembered];
         [AppManager instance].userImageUrl = [self avatorRemembered];
         [AppManager instance].userPoint = [self pointRemembered];
-        [AppManager instance].userPswd = [self pswdRemembered];
     } else {
         
-        [AppManager instance].userId = @""; //@"L8SETw";
+        [AppManager instance].userId = @"13524010590";
+        [AppManager instance].userPswd = @"123456";
         [AppManager instance].userName = @"我";
         [AppManager instance].userNickName = @"Adam";
         [AppManager instance].userTicket = @"";
         [AppManager instance].userImageUrl = @"";
         [AppManager instance].userPoint = @"";
-        [AppManager instance].userPswd = @"";
     }
 }
 

@@ -2,21 +2,21 @@
 //  ProductListViewController.m
 //  CoffeeTime
 //
-//  Created by fule on 15/6/25.
+//  Created by Adam on 15/6/25.
 //  Copyright (c) 2015年 fule. All rights reserved.
 //
 
 #import "ProductListViewController.h"
 #import "ProductTableViewCell.h"
 #import "Header.h"
-#import "GoodsList.h"
-#import "GoodsModel.h"
+#import "ProductTypeModel.h"
+#import "ProductModel.h"
+#import "ShopCartModel.h"
 
-@interface ProductListViewController ()<shangPinTableViewCellDelegate>
+@interface ProductListViewController () <ProductTableViewCellDelegate, UIAlertViewDelegate>
 {
-    NSMutableArray *infoArr;
-    
-    GoodsList *goodsList;
+    NSMutableArray *productDataArray;
+    NSInteger currentProductClickTag;
 }
 
 @end
@@ -32,8 +32,9 @@
     
     self.navView.backgroundColor = barColor;
     
-    [self loadTestData];
+//    [self loadTestData];
     
+    [self transProductInfo];
 }
 
 - (void)adjustView
@@ -54,42 +55,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadTestData
-{
-    infoArr = [[NSMutableArray alloc]init];
-    
-    for (int i = 0; i<10; i++){
-        
-        // product type list
-        NSMutableArray *sharpArray=[NSMutableArray array];
-        
-        NSArray *array=[NSArray arrayWithObjects:@"大杯",@"中杯",@"小杯", nil];
-        
-        for (int m=0; m<3; m++) {
-            
-            NSMutableDictionary*goodsSharpList = [NSMutableDictionary dictionary];
-            [goodsSharpList setValue:array[m] forKey:@"goodsSharp"];
-            [goodsSharpList setValue:@"￥25" forKey:@"goodsPrice"];
-            [goodsSharpList setValue:[NSNumber numberWithInt:0] forKey:@"goodsNum"];
-            
-            goodsList = [[GoodsList alloc] initWithDict:goodsSharpList];
-            [sharpArray addObject:goodsList];
-        }
-        
-        // product list
-        NSMutableDictionary *infoDict = [NSMutableDictionary dictionary];
-        [infoDict setValue:@"冰激凌" forKey:@"goodsTitle"];
-        [infoDict setValue:sharpArray forKey:@"goodsArray"];
-        
-        GoodsModel *goodsModel = [[GoodsModel alloc] initWithDict:infoDict];
-        [infoArr addObject:goodsModel];
-    }
-}
-
 #pragma mark - tableView的协议方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [productDataArray count];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -99,15 +68,14 @@
     
     if (cell == nil) {
         
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"ProductTableViewCell" owner:nil options:nil]lastObject];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"ProductTableViewCell" owner:nil options:nil] lastObject];
         cell.delegate = self;
-        
     }
     
-    GoodsModel*dic=infoArr[indexPath.row];
-    //for (int i=0; i<dic.goodsArray.count; i++) {
+    ProductModel *productModel = productDataArray[indexPath.row];
+    //for (int i=0; i<dic.productTypeArray.count; i++) {
     
-    [cell addTheValue:dic theValue:nil indexPath:indexPath];
+    [cell addTheValue:productModel theValue:nil indexPath:indexPath];
     
     //}
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -143,20 +111,44 @@
  *  实现加减按钮点击代理事件
  *
  *  @param cell 当前单元格
- *  @param flag 按钮标识，11 为减按钮，12为加按钮
+ *  @param flag 按钮标识
  */
--(void)btnClick:(UITableViewCell *)cell andFlag:(int)flag
+-(void)btnClick:(UITableViewCell *)cell andFlag:(NSInteger)flag
 {
     
-    // 10000*indexPath.row + (goodsTypeListIndex * 10 + 10);
+    currentProductClickTag = flag;
     
+    if ([[FMDBConnection instance] isNeedClearShopCart:[AppManager instance].selStoreId]) {
+        // 已经在其他商家选择过商品
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"清空购物车" message:@"您已选择了美食，确定要切换商家。\n 清空购物车才能加入所点美食。" delegate:self cancelButtonTitle:@"考虑下" otherButtonTitles:@"立即清空", nil];
+        [alertView show];
+    } else {
+        // 1，购物车为空； 2，或者已经在该商家点过
+        [self handleShopCart:currentProductClickTag];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != 1) {
+        DLog(@"考虑下");
+    } else {
+        DLog(@"立即清空");
+        
+        [[FMDBConnection instance] delAllShopCartTableData];
+        
+        [self handleShopCart:currentProductClickTag];
+    }
+}
+
+- (void)handleShopCart:(NSInteger)flag
+{
     int rowIndex = flag / 10000;
     
     //  第一行
     int yushu = flag % 10000;
     int goodsTypeListIndex = (yushu - 10) / 10;
     
-    // row 1.1
     if (yushu % 10 == 0) {
         // -
         [self doHandleMethod:1 rowIndex:rowIndex goodsTypeListIndex:goodsTypeListIndex];
@@ -167,30 +159,203 @@
     
     //刷新表格
     [self.mTableView reloadData];
-    
 }
 
 - (void)doHandleMethod:(NSInteger)handleType rowIndex:(NSInteger)rowIndex goodsTypeListIndex:(NSInteger)goodsTypeListIndex
 {
+    
+    ProductModel *productModel = nil;
+    ProductTypeModel *productTypeModel = nil;
+    
     if (handleType == 1) {
         
         //做减法
         //先获取到当期行数据源内容，改变数据源内容，刷新表格
-        GoodsModel *model = infoArr[rowIndex];
-        GoodsList *goodList = model.goodsArray[goodsTypeListIndex];
+        productModel = productDataArray[rowIndex];
+        productTypeModel = productModel.productTypeArray[goodsTypeListIndex];
         
-        if (goodList.goodsNum > 0)
+        if ([productTypeModel.productNum integerValue] > 0)
         {
-            goodList.goodsNum --;
+            productTypeModel.productNum = @([productTypeModel.productNum integerValue] - 1);
         }
         
     } else if (handleType == 2) {
         
         //做加法
-        GoodsModel *model = infoArr[rowIndex];
-        GoodsList *goodList=model.goodsArray[goodsTypeListIndex];
-        goodList.goodsNum ++;
+        productModel = productDataArray[rowIndex];
+        productTypeModel = productModel.productTypeArray[goodsTypeListIndex];
+        productTypeModel.productNum = @([productTypeModel.productNum integerValue] + 1);
+    }
+    
+    [self doSaveLocalDB:productModel productTypeModel:productTypeModel];
+}
+
+- (void)doSaveLocalDB:(ProductModel *)productModel productTypeModel:(ProductTypeModel *)productTypeModel
+{
+    NSMutableDictionary *shopCartDic = [[NSMutableDictionary alloc] init];
+    
+    [shopCartDic setObject:[AppManager instance].selStoreName forKey:@"shopName"];
+    [shopCartDic setObject:[AppManager instance].selStoreId forKey:@"shopId"];
+    [shopCartDic setObject:productModel.productId forKey:@"commodityId"];
+    [shopCartDic setObject:productModel.productName forKey:@"commodityName"];
+    [shopCartDic setObject:productTypeModel.unitId forKey:@"commodityTypeId"];
+    [shopCartDic setObject:productTypeModel.unitPrice forKey:@"commodityPrice"];
+    [shopCartDic setObject:productModel.productNo forKey:@"commodityNumber"];
+    [shopCartDic setObject:productModel.productKind forKey:@"commodityClass"];
+    [shopCartDic setObject:productTypeModel.unitName forKey:@"commodityTypeName"];
+    [shopCartDic setObject:productTypeModel.productNum forKey:@"commodityAmount"];
+    
+    ShopCartModel *shopCarModel = [[ShopCartModel alloc] initWithDict:shopCartDic];
+    [[FMDBConnection instance] updateShopCartLogic:shopCarModel];
+}
+
+#pragma mark 商户信息
+- (void)transProductInfo
+{
+    
+    NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
+    
+    [dataDict setObject:[AppManager instance].selStoreId forKey:@"shopDetailId"];
+    [dataDict setObject:[AppManager instance].userTicket forKey:@"page"];
+    [dataDict setObject:[AppManager instance].userTicket forKey:@"rows"];
+    
+    NSMutableDictionary *paramDict = [CommonUtils getParamDict:@"getCommodityInfo"
+                                                      dataDict:dataDict];
+    
+    [self showHUDWithText:@"正在加载"
+                   inView:self.view
+              methodBlock:^(CompletionBlock completionBlock, ATMHud *hud)
+     {
+         
+         [HttpRequestData dataWithDic:paramDict
+                          requestType:POST_METHOD
+                            serverUrl:HOST_URL
+                             andBlock:^(NSString *requestStr) {
+                                 
+                                 if (completionBlock) {
+                                     completionBlock();
+                                 }
+                                 
+                                 if ([requestStr isEqualToString:@"Start"]) {
+                                     
+                                     DLog(@"Start");
+                                 } else if([requestStr isEqualToString:@"Failed"]) {
+                                     
+                                     DLog(@"Failed");
+                                     
+                                 } else {
+                                     
+                                     NSDictionary* backDic = [HttpRequestData jsonValue:requestStr];
+                                     NSLog(@"requestStr = %@", backDic);
+                                     
+                                     if (backDic != nil) {
+                                         
+                                         NSString *errCodeStr = (NSString *)[backDic valueForKey:@"code"];
+                                         
+                                         if ( [errCodeStr integerValue] == 0 ) {
+                                             
+                                             NSArray *resultArray = (NSArray *)[(NSArray *)[backDic valueForKey:@"result"] valueForKey:@"commoditylist"];
+                                             
+                                             productDataArray = [[NSMutableArray alloc] init];
+                                             
+                                             NSInteger productCount = [resultArray count];
+                                             
+                                             for (NSInteger productIndex = 0; productIndex < productCount; productIndex++) {
+                                                 
+                                                 // product type list
+                                                 NSMutableArray *typeArray = [NSMutableArray array];
+                                                 
+                                                 NSMutableDictionary *productDic = (NSMutableDictionary *)resultArray[productIndex];
+                                                 
+                                                 NSArray *productTypeArray = (NSArray *)[productDic valueForKey:@"commodityTypeList"];
+                                                 NSInteger productTypeNumber = [productTypeArray count];
+                                                 
+                                                 for (NSInteger typeIndex = 0; typeIndex < productTypeNumber; typeIndex ++) {
+
+                                                     NSDictionary *productTypeDic = (NSDictionary *)productTypeArray[typeIndex];
+                                                     
+                                                     ProductTypeModel *productTypeModel = [[ProductTypeModel alloc] initWithDict:productTypeDic];
+                                                     [typeArray addObject:productTypeModel];
+                                                 }
+                                                 
+                                                 ProductModel *productModel = [[ProductModel alloc] initWithDict:productDic typeArray:typeArray];
+                                                 [productDataArray addObject:productModel];
+                                                 
+                                             }
+                                             
+                                             [self loadShopCartData];
+                                             
+                                             [self.mTableView reloadData];
+                                         } else {
+                                             
+                                             [self showHUDWithText:[backDic valueForKey:@"msg"]];
+                                         }
+                                     }
+                                 }
+                             }];
+     }];
+}
+
+#pragma mark - load Shop Cart data
+- (void)loadShopCartData
+{
+    if ([[FMDBConnection instance] getAllShopCartDataFromDB]) {
         
+        NSMutableArray *shopCartArray = [[FMDBConnection instance] getStoreAllCartFromDB:[AppManager instance].selStoreId];
+        
+        NSInteger allProductNum = [productDataArray count];
+        for (NSInteger index = 0; index < allProductNum; index ++) {
+            ProductModel *productModel = productDataArray[index];
+            NSMutableArray *productTypeArray = productModel.productTypeArray;
+            
+            NSInteger typeNum = [productTypeArray count];
+            for (NSInteger typeIndex = 0; typeIndex < typeNum; typeIndex ++) {
+                
+                ProductTypeModel *productTypeModel = productTypeArray[typeIndex];
+                
+                NSInteger shopCartNum = [shopCartArray count];
+                for (NSInteger shopCartIndex = 0; shopCartIndex < shopCartNum; shopCartIndex++) {
+
+                    ShopCartModel *shopCartModel = shopCartArray[shopCartIndex];
+                    if ([shopCartModel.productId isEqualToString:productModel.productId]  && [shopCartModel.unitId isEqualToString:productTypeModel.unitId]) {
+                        
+                        productTypeModel.productNum = shopCartModel.shopCartNum;
+                    }
+                }
+            }
+        }
+    }
+}
+
+- (void)loadTestData
+{
+    productDataArray = [[NSMutableArray alloc]init];
+    
+    for (int i = 0; i<10; i++){
+        
+        // product type list
+        NSMutableArray *typeArray = [NSMutableArray array];
+        
+        NSArray *array = [NSArray arrayWithObjects:@"大杯",@"中杯",@"小杯", nil];
+        
+        for (int m=0; m<3; m++) {
+            
+            NSMutableDictionary *produtcTypeDict = [NSMutableDictionary dictionary];
+            [produtcTypeDict setValue:array[m] forKey:@"unitName"];
+            [produtcTypeDict setValue:@"￥25" forKey:@"unitPrice"];
+            [produtcTypeDict setValue:[NSNumber numberWithInt:0] forKey:@"productNum"];
+            
+            ProductTypeModel *productTypeModel = [[ProductTypeModel alloc] initWithDict:produtcTypeDict];
+            [typeArray addObject:productTypeModel];
+        }
+        
+        // product list
+        NSMutableDictionary *productDict = [NSMutableDictionary dictionary];
+        [productDict setValue:@"冰激凌" forKey:@"commodityName"];
+        [productDict setValue:typeArray forKey:@"productTypeArray"];
+        
+        ProductModel *productModel = [[ProductModel alloc] initWithDict:productDict typeArray:typeArray];
+        [productDataArray addObject:productModel];
     }
 }
 

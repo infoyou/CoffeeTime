@@ -10,8 +10,7 @@
 #import "FMResultSet.h"
 
 // Business Object
-#import "AssessObject.h"
-
+#import "ShopCartModel.h"
 
 @interface FMDBConnection : NSObject
 
@@ -24,16 +23,20 @@
 - (BOOL)closeDB;
 
 #pragma mark - user
-- (void)insertAssessObjectDB:(AssessObject *)surveyInfo;
-- (void)insertAllAssessObjectDB:(NSArray *)userList;
+- (void)insertShopCarModelDB:(ShopCartModel *)shopInfo;
 
-- (NSMutableArray *)getAssessRecordArrayByLogicType:(NSInteger)logicType;
-- (AssessObject *)getAssessRecordById:(NSString *)assessId;
+- (BOOL)isExistShopCat:(ShopCartModel *)shopInfo;
+- (void)updateShopCartDB:(ShopCartModel *)userInfo;
+- (void)delShopCartTableBy:(ShopCartModel *)shopCart;
 
+- (void)updateShopCartLogic:(ShopCartModel *)shopCarModel;
+- (NSMutableArray *)getStoreAllCartFromDB:(NSString *)storeId;
 
-- (void)delUserTable;
-- (void)updateAssessObjectDB:(AssessObject *)userInfo;
-- (AssessObject *)getAllSurveyDataFromDB;
-- (NSString *)getAvailableSurveyResult;
+// 判断是否有数据，需要清空？
+- (BOOL)getAllShopCartDataFromDB;
+// 判断是否有数据，需要清空！
+- (void)delAllShopCartTableData;
+
+- (BOOL)isNeedClearShopCart:(NSString *)storeId;
 
 @end

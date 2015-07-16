@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1F9A4179-6B67-436E-B379-ADF2222ED6BA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CoffeeTime</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9E0E90725BE69669E6FD90A8017BD2CA0C8F7288</key>
+		<string>https://github.com/infoyou/CoffeeTime.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CoffeeTime.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9E0E90725BE69669E6FD90A8017BD2CA0C8F7288</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/infoyou/CoffeeTime.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9E0E90725BE69669E6FD90A8017BD2CA0C8F7288</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9E0E90725BE69669E6FD90A8017BD2CA0C8F7288</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CoffeeTime</string>
+		</dict>
+	</array>
+</dict>
+</plist>
