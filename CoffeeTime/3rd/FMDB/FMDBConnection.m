@@ -314,12 +314,12 @@ static FMDBConnection *instance = nil;
     return NO;
 }
 
-- (NSMutableArray *)getShopCartShowNumber
+- (NSMutableArray *)getShopCartShowNumber:(NSString *)storeId
 {
     
     NSMutableArray *showNumberArray = [NSMutableArray array];
     
-    NSString *sql = @"SELECT storeId, SUM(shopCartNum), SUM(shopCartNum * unitPrice / 100) from ShopCart GROUP BY storeId ORDER BY storeId";
+    NSString *sql = [NSString stringWithFormat:@"SELECT storeId, SUM(shopCartNum), SUM(shopCartNum * unitPrice / 100) from ShopCart Where storeId == %@ GROUP BY storeId ORDER BY storeId", storeId];
     FMResultSet *res = [self.db executeQuery:sql];
     
     while ([res next]) {
@@ -367,30 +367,30 @@ static FMDBConnection *instance = nil;
     }
 }
 
-- (void)updateShopCartLogic:(ShopCartModel *)shopCarModel
+- (void)updateShopCartLogic:(ShopCartModel *)shopCartModel
 {
-    NSInteger shopCartAmount = [shopCarModel.shopCartNum integerValue];
+    NSInteger shopCartAmount = [shopCartModel.shopCartNum integerValue];
     
     if (shopCartAmount > 0) {
         
-        BOOL isExit = [[FMDBConnection instance] isExistShopCat:shopCarModel];
+        BOOL isExit = [[FMDBConnection instance] isExistShopCat:shopCartModel];
         
         // 是否存在
         if (isExit == YES) {
             
             // 修改
-            [[FMDBConnection instance] updateShopCartDB:shopCarModel];
+            [[FMDBConnection instance] updateShopCartDB:shopCartModel];
             
         } else {
             
             // 新建
-            [[FMDBConnection instance] insertShopCarModelDB:shopCarModel];
+            [[FMDBConnection instance] insertShopCarModelDB:shopCartModel];
             
         }
     } else {
         
         // 删除
-        [[FMDBConnection instance] delShopCartTableBy:shopCarModel];
+        [[FMDBConnection instance] delShopCartTableBy:shopCartModel];
     }
 }
 

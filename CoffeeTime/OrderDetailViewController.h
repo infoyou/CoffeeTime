@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "RootViewController.h"
+
 @interface OrderDetailViewController :RootViewController
 
 - (IBAction)confirmButton:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UITableView *mTableView;
+
+@property (weak, nonatomic) IBOutlet UILabel *payPrice;
 
 @end

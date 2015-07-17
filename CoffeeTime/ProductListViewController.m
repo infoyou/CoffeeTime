@@ -23,6 +23,13 @@
 
 @implementation ProductListViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self transProductInfo];
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -32,9 +39,6 @@
     
     self.navView.backgroundColor = barColor;
     
-//    [self loadTestData];
-    
-    [self transProductInfo];
 }
 
 - (void)adjustView
@@ -73,11 +77,8 @@
     }
     
     ProductModel *productModel = productDataArray[indexPath.row];
-    //for (int i=0; i<dic.productTypeArray.count; i++) {
-    
-    [cell addTheValue:productModel theValue:nil indexPath:indexPath];
-    
-    //}
+    [cell addProductUnit:productModel indexPath:indexPath];
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
@@ -101,8 +102,14 @@
 
 - (IBAction)doConfim:(id)sender {
     
-    ShopCarViewController *vc = [ShopCarViewController new];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([self.totalNumLabel.text integerValue] > 0) {
+    
+        [self transShopCartInfo];
+
+    } else {
+        
+        [self showHUDWithText:@"请先选择商品。"];
+    }
 }
 
 #pragma mark -- 实现加减按钮点击代理事件
@@ -112,10 +119,10 @@
  *  @param cell 当前单元格
  *  @param flag 按钮标识
  */
--(void)btnClick:(UITableViewCell *)cell andFlag:(NSInteger)flag
+- (void)btnClick:(UITableViewCell *)cell tag:(NSInteger)tag
 {
     
-    currentProductClickTag = flag;
+    currentProductClickTag = tag;
     
     if ([[FMDBConnection instance] isNeedClearShopCart:[AppManager instance].selStoreId]) {
         // 已经在其他商家选择过商品
@@ -140,12 +147,11 @@
     }
 }
 
-- (void)handleShopCart:(NSInteger)flag
+- (void)handleShopCart:(NSInteger)tag
 {
-    int rowIndex = flag / 10000;
+    int rowIndex = tag / 10000;
     
-    //  第一行
-    int yushu = flag % 10000;
+    int yushu = tag % 10000;
     int goodsTypeListIndex = (yushu - 10) / 10;
     
     if (yushu % 10 == 0) {
@@ -191,9 +197,10 @@
     [self showShopCartNumber];
 }
 
+#pragma mark - show shopCart Number
 - (void)showShopCartNumber
 {
-    NSMutableArray *shopCartShowNumber = [[FMDBConnection instance] getShopCartShowNumber];
+    NSMutableArray *shopCartShowNumber = [[FMDBConnection instance] getShopCartShowNumber:[AppManager instance].selStoreId];
     if ([shopCartShowNumber count] > 0) {
 
         self.totalNumLabel.text = shopCartShowNumber[0];
@@ -220,10 +227,11 @@
     [shopCartDic setObject:productTypeModel.unitName forKey:@"commodityTypeName"];
     [shopCartDic setObject:[NSNumber numberWithInteger:productTypeModel.productNum] forKey:@"commodityAmount"];
     
-    ShopCartModel *shopCarModel = [[ShopCartModel alloc] initWithDict:shopCartDic];
-    [[FMDBConnection instance] updateShopCartLogic:shopCarModel];
+    ShopCartModel *shopCartModel = [[ShopCartModel alloc] initWithDict:shopCartDic];
+    [[FMDBConnection instance] updateShopCartLogic:shopCartModel];
 }
 
+#pragma mark - Trans Data
 #pragma mark 商户信息
 - (void)transProductInfo
 {
@@ -298,7 +306,7 @@
                                                  
                                              }
                                              
-                                             [self loadShopCartData];
+                                             [self loadShopCartData2Show];
                                              
                                              [self.mTableView reloadData];
                                          } else {
@@ -311,8 +319,89 @@
      }];
 }
 
+- (void)transShopCartInfo
+{
+    NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
+    
+    [dataDict setObject:[AppManager instance].selStoreId forKey:@"shopId"];
+    
+//    {"commodityId":"12","commodityTypeId":"12","commodityPrice":"55","commodityAmount":"2"}
+    
+    if ([[FMDBConnection instance] getAllShopCartDataFromDB]) {
+        
+        NSMutableArray *productListArray = [NSMutableArray array];
+        
+        NSMutableArray *shopCartArray = [[FMDBConnection instance] getStoreAllCartFromDB:[AppManager instance].selStoreId];
+        
+        NSInteger shopCartNum = [shopCartArray count];
+        for (NSInteger shopCartIndex = 0; shopCartIndex < shopCartNum; shopCartIndex++) {
+            
+            ShopCartModel *shopCartModel = shopCartArray[shopCartIndex];
+            
+            NSMutableDictionary *productDict = [[NSMutableDictionary alloc] init];
+            
+            [productDict setObject:shopCartModel.productId forKey:@"commodityId"];
+            [productDict setObject:shopCartModel.unitId forKey:@"commodityTypeId"];
+            [productDict setObject:[NSString stringWithFormat:@"%@", shopCartModel.unitPrice] forKey:@"commodityPrice"];
+            [productDict setObject:[NSString stringWithFormat:@"%@", shopCartModel.shopCartNum] forKey:@"commodityAmount"];
+            
+            [productListArray addObject:productDict];
+        }
+        
+        [dataDict setObject:productListArray forKey:@"commodityList"];
+    }
+
+    
+    NSMutableDictionary *paramDict = [CommonUtils getParamDict:@"addshoppingCart"
+                                                      dataDict:dataDict];
+    
+    [self showHUDWithText:@"正在加载"
+                   inView:self.view
+              methodBlock:^(CompletionBlock completionBlock, ATMHud *hud)
+     {
+         
+         [HttpRequestData dataWithDic:paramDict
+                          requestType:POST_METHOD
+                            serverUrl:HOST_URL
+                             andBlock:^(NSString *requestStr) {
+                                 
+                                 if (completionBlock) {
+                                     completionBlock();
+                                 }
+                                 
+                                 if ([requestStr isEqualToString:@"Start"]) {
+                                     
+                                     DLog(@"Start");
+                                 } else if([requestStr isEqualToString:@"Failed"]) {
+                                     
+                                     DLog(@"Failed");
+                                     
+                                 } else {
+                                     
+                                     NSDictionary* backDic = [HttpRequestData jsonValue:requestStr];
+                                     NSLog(@"requestStr = %@", backDic);
+                                     
+                                     if (backDic != nil) {
+                                         
+                                         NSString *errCodeStr = (NSString *)[backDic valueForKey:@"code"];
+                                         
+                                         if ( [errCodeStr integerValue] == 0 ) {
+                                             
+                                             // 进入购物车界面
+                                             ShopCartViewController *vc = [ShopCartViewController new];
+                                             [self.navigationController pushViewController:vc animated:YES];
+                                         } else {
+                                             
+                                             [self showHUDWithText:[backDic valueForKey:@"msg"]];
+                                         }
+                                     }
+                                 }
+                             }];
+     }];
+}
+
 #pragma mark - load Shop Cart data
-- (void)loadShopCartData
+- (void)loadShopCartData2Show
 {
     if ([[FMDBConnection instance] getAllShopCartDataFromDB]) {
         

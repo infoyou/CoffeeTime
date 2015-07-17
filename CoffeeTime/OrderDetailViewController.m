@@ -7,9 +7,9 @@
 //
 
 #import "OrderDetailViewController.h"
-#import "DingDanTableViewCell.h"
-#import "DingDanRenTableViewCell.h"
-#import "DingDanFootTableViewCell.h"
+#import "OrderTableViewCell.h"
+#import "OrderAddressTableViewCell.h"
+#import "OrderFootTableViewCell.h"
 #import "AddressListViewController.h"
 #import "CommonUtil.h"
 #import "WXApi.h"
@@ -18,18 +18,24 @@
 #import "Header.h"
 
 @interface OrderDetailViewController ()
+{
+NSInteger totalPrice;
+}
 
 @end
 
 @implementation OrderDetailViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    self.title=@"订单确认";
+    
+    self.title = @"订单确认";
+    
     [self.mTableView setBackgroundColor:COLOR(238, 237, 235)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideHUD) name:ORDER_PAY_NOTIFICATION object:nil];
     // Do any additional setup after loading the view from its nib.
-    
+    [self getTotalPrice];
 }
 
 - (void)hideHUD
@@ -82,10 +88,10 @@
         case 0:
         {
             static NSString *CellID = @"CellID";
-            DingDanRenTableViewCell *cell = [self.mTableView dequeueReusableCellWithIdentifier:CellID];
+            OrderAddressTableViewCell *cell = [self.mTableView dequeueReusableCellWithIdentifier:CellID];
             
             if (cell==nil) {
-                cell = [[[NSBundle mainBundle]loadNibNamed:@"DingDanRenTableViewCell" owner:nil options:nil]lastObject];
+                cell = [[[NSBundle mainBundle]loadNibNamed:@"OrderAddressTableViewCell" owner:nil options:nil]lastObject];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -96,10 +102,10 @@
         case 1:
         {
             static NSString *CellID = @"CellID";
-            DingDanTableViewCell *cell = [self.mTableView dequeueReusableCellWithIdentifier:CellID];
+            OrderTableViewCell *cell = [self.mTableView dequeueReusableCellWithIdentifier:CellID];
             
             if (cell==nil) {
-                cell = [[[NSBundle mainBundle]loadNibNamed:@"DingDanTableViewCell" owner:nil options:nil]lastObject];
+                cell = [[[NSBundle mainBundle]loadNibNamed:@"OrderTableViewCell" owner:nil options:nil]lastObject];
             }
             if (indexPath.row==0) {
                 cell.chooseLabel.text=@"送达时间";
@@ -109,7 +115,7 @@
                 cell.meansLabel.text=@"微信支付";
             }else if (indexPath.row==2){
                 cell.chooseLabel.text=@"使用红包";
-                cell.meansLabel.text=@"星巴克满一杯减10元(7月17号到期)";
+                cell.meansLabel.text=@"星巴克满一杯减10元(7月27号到期)";
                 cell.meansLabel.font=[UIFont fontWithName:@"Arial" size:12];
                 cell.meansLabel.textColor=[UIColor redColor];
             }
@@ -123,13 +129,19 @@
         case 2:
         {
             static NSString *CellID = @"CellID";
-            DingDanFootTableViewCell *cell = [self.mTableView dequeueReusableCellWithIdentifier:CellID];
+            OrderFootTableViewCell *cell = [self.mTableView dequeueReusableCellWithIdentifier:CellID];
             
             if (cell==nil) {
-                cell = [[[NSBundle mainBundle]loadNibNamed:@"DingDanFootTableViewCell" owner:nil options:nil]lastObject];
+                cell = [[[NSBundle mainBundle]loadNibNamed:@"OrderFootTableViewCell" owner:nil options:nil]lastObject];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
+            // Total Price
+            cell.totalPriceLabel.text = [NSString stringWithFormat:@"￥%d", totalPrice];
+            cell.currentPriceLabel.text = [NSString stringWithFormat:@"￥%d", totalPrice - 2];
+            
+            self.payPrice.text = [NSString stringWithFormat:@"￥%d", totalPrice - 2];
+            
             return cell;
             
         }
@@ -139,24 +151,36 @@
             break;
     }
     
-   
-    
     return nil;
-    
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
         AddressListViewController*vc=[AddressListViewController new];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
-    
 }
+
 - (IBAction)confirmButton:(id)sender {
     [[WXPayClient shareInstance] payProductwithPrice:@"250"];
 
 }
 
+- (void)getTotalPrice
+{
+    // Total Price
+    NSMutableArray *shopCartShowNumber = [[FMDBConnection instance] getShopCartShowNumber:[AppManager instance].selStoreId];
+    
+    if ([shopCartShowNumber count] > 0) {
+        
+        totalPrice = [shopCartShowNumber[1] integerValue];
+
+    } else {
+        
+        totalPrice = 0;
+    }
+    
+}
 
 
 @end

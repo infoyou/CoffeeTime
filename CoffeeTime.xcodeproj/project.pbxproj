@@ -191,21 +191,21 @@
 		A967A5C41B40F95B001C9EEF /* OrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A967A5C21B40F95B001C9EEF /* OrderDetailViewController.xib */; };
 		A9EA66D51B43841000838886 /* ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA66D41B43841000838886 /* ProductModel.m */; };
 		A9EA66D81B43868200838886 /* ProductTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA66D71B43868200838886 /* ProductTypeModel.m */; };
-		A9F1B4EA1B4F641500371EA1 /* DingDanRenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F1B4E81B4F641500371EA1 /* DingDanRenTableViewCell.m */; };
-		A9F1B4EB1B4F641500371EA1 /* DingDanRenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F1B4E91B4F641500371EA1 /* DingDanRenTableViewCell.xib */; };
-		A9F1B4EF1B4F65EA00371EA1 /* DingDanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F1B4ED1B4F65EA00371EA1 /* DingDanTableViewCell.m */; };
-		A9F1B4F01B4F65EA00371EA1 /* DingDanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F1B4EE1B4F65EA00371EA1 /* DingDanTableViewCell.xib */; };
-		A9F1B4F41B4F676900371EA1 /* DingDanFootTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F1B4F21B4F676900371EA1 /* DingDanFootTableViewCell.m */; };
-		A9F1B4F51B4F676900371EA1 /* DingDanFootTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F1B4F31B4F676900371EA1 /* DingDanFootTableViewCell.xib */; };
+		A9F1B4EA1B4F641500371EA1 /* OrderAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F1B4E81B4F641500371EA1 /* OrderAddressTableViewCell.m */; };
+		A9F1B4EB1B4F641500371EA1 /* OrderAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F1B4E91B4F641500371EA1 /* OrderAddressTableViewCell.xib */; };
+		A9F1B4EF1B4F65EA00371EA1 /* OrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F1B4ED1B4F65EA00371EA1 /* OrderTableViewCell.m */; };
+		A9F1B4F01B4F65EA00371EA1 /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F1B4EE1B4F65EA00371EA1 /* OrderTableViewCell.xib */; };
+		A9F1B4F41B4F676900371EA1 /* OrderFootTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F1B4F21B4F676900371EA1 /* OrderFootTableViewCell.m */; };
+		A9F1B4F51B4F676900371EA1 /* OrderFootTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F1B4F31B4F676900371EA1 /* OrderFootTableViewCell.xib */; };
 		A9F1B5001B4F938A00371EA1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F1B4F61B4F938A00371EA1 /* libWeChatSDK.a */; };
 		A9F1B5011B4F938A00371EA1 /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F1B4FB1B4F938A00371EA1 /* CommonUtil.m */; };
 		A9F1B5061B4FC71B00371EA1 /* WXPayClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F1B5051B4FC71B00371EA1 /* WXPayClient.m */; };
-		C185B8D81B54E0CA00386DFA /* ShopCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C185B8D61B54E0CA00386DFA /* ShopCarViewController.m */; };
-		C185B8D91B54E0CA00386DFA /* ShopCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C185B8D71B54E0CA00386DFA /* ShopCarViewController.xib */; };
-		C185B8DD1B54E0DC00386DFA /* ShopCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C185B8DB1B54E0DC00386DFA /* ShopCarTableViewCell.m */; };
-		C185B8DE1B54E0DC00386DFA /* ShopCarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C185B8DC1B54E0DC00386DFA /* ShopCarTableViewCell.xib */; };
-		C185B8E11B54E0E600386DFA /* ShopCarFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C185B8DF1B54E0E600386DFA /* ShopCarFootView.xib */; };
-		C185B8E21B54E0E600386DFA /* ShopCarHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C185B8E01B54E0E600386DFA /* ShopCarHeadView.xib */; };
+		C185B8D81B54E0CA00386DFA /* ShopCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C185B8D61B54E0CA00386DFA /* ShopCartViewController.m */; };
+		C185B8D91B54E0CA00386DFA /* ShopCartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C185B8D71B54E0CA00386DFA /* ShopCartViewController.xib */; };
+		C185B8DD1B54E0DC00386DFA /* ShopCartTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C185B8DB1B54E0DC00386DFA /* ShopCartTableCell.m */; };
+		C185B8DE1B54E0DC00386DFA /* ShopCartTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C185B8DC1B54E0DC00386DFA /* ShopCartTableCell.xib */; };
+		C185B8E11B54E0E600386DFA /* ShopCartFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C185B8DF1B54E0E600386DFA /* ShopCartFootView.xib */; };
+		C185B8E21B54E0E600386DFA /* ShopCartHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C185B8E01B54E0E600386DFA /* ShopCartHeadView.xib */; };
 		C185B8E51B54F18D00386DFA /* StoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C185B8E41B54F18D00386DFA /* StoreModel.m */; };
 		C185B8EC1B551DED00386DFA /* AddressListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C185B8EA1B551DED00386DFA /* AddressListViewController.m */; };
 		C185B8ED1B551DED00386DFA /* AddressListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C185B8EB1B551DED00386DFA /* AddressListViewController.xib */; };
@@ -219,6 +219,7 @@
 		C1922D661B56325900E72A57 /* ProfileCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1922D641B56325900E72A57 /* ProfileCellView.xib */; };
 		C1922D671B56325900E72A57 /* ProfileHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1922D651B56325900E72A57 /* ProfileHeadView.xib */; };
 		C1922D691B56327900E72A57 /* SettingCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1922D681B56327900E72A57 /* SettingCellView.xib */; };
+		C1A8D05C1B58E6FC0052DE1F /* shopCartSplitLine.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A8D05B1B58E6FC0052DE1F /* shopCartSplitLine.png */; };
 		C1C10BD21B53C3E4005DF14E /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C10BD11B53C3E4005DF14E /* ActivityModel.m */; };
 		C1C10BD61B53C3F7005DF14E /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C10BD41B53C3F7005DF14E /* ActivityViewController.m */; };
 		C1C10BD71B53C3F7005DF14E /* ActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C10BD51B53C3F7005DF14E /* ActivityViewController.xib */; };
@@ -562,15 +563,15 @@
 		A9EA66D41B43841000838886 /* ProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductModel.m; sourceTree = "<group>"; };
 		A9EA66D61B43868200838886 /* ProductTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTypeModel.h; sourceTree = "<group>"; };
 		A9EA66D71B43868200838886 /* ProductTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTypeModel.m; sourceTree = "<group>"; };
-		A9F1B4E71B4F641500371EA1 /* DingDanRenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DingDanRenTableViewCell.h; sourceTree = "<group>"; };
-		A9F1B4E81B4F641500371EA1 /* DingDanRenTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DingDanRenTableViewCell.m; sourceTree = "<group>"; };
-		A9F1B4E91B4F641500371EA1 /* DingDanRenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DingDanRenTableViewCell.xib; sourceTree = "<group>"; };
-		A9F1B4EC1B4F65EA00371EA1 /* DingDanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DingDanTableViewCell.h; sourceTree = "<group>"; };
-		A9F1B4ED1B4F65EA00371EA1 /* DingDanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DingDanTableViewCell.m; sourceTree = "<group>"; };
-		A9F1B4EE1B4F65EA00371EA1 /* DingDanTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DingDanTableViewCell.xib; sourceTree = "<group>"; };
-		A9F1B4F11B4F676900371EA1 /* DingDanFootTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DingDanFootTableViewCell.h; sourceTree = "<group>"; };
-		A9F1B4F21B4F676900371EA1 /* DingDanFootTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DingDanFootTableViewCell.m; sourceTree = "<group>"; };
-		A9F1B4F31B4F676900371EA1 /* DingDanFootTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DingDanFootTableViewCell.xib; sourceTree = "<group>"; };
+		A9F1B4E71B4F641500371EA1 /* OrderAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderAddressTableViewCell.h; sourceTree = "<group>"; };
+		A9F1B4E81B4F641500371EA1 /* OrderAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderAddressTableViewCell.m; sourceTree = "<group>"; };
+		A9F1B4E91B4F641500371EA1 /* OrderAddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderAddressTableViewCell.xib; sourceTree = "<group>"; };
+		A9F1B4EC1B4F65EA00371EA1 /* OrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTableViewCell.h; sourceTree = "<group>"; };
+		A9F1B4ED1B4F65EA00371EA1 /* OrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTableViewCell.m; sourceTree = "<group>"; };
+		A9F1B4EE1B4F65EA00371EA1 /* OrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
+		A9F1B4F11B4F676900371EA1 /* OrderFootTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderFootTableViewCell.h; sourceTree = "<group>"; };
+		A9F1B4F21B4F676900371EA1 /* OrderFootTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderFootTableViewCell.m; sourceTree = "<group>"; };
+		A9F1B4F31B4F676900371EA1 /* OrderFootTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderFootTableViewCell.xib; sourceTree = "<group>"; };
 		A9F1B4F61B4F938A00371EA1 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = ../libWeChatSDK.a; sourceTree = "<group>"; };
 		A9F1B4F71B4F938A00371EA1 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApi.h; path = ../WXApi.h; sourceTree = "<group>"; };
 		A9F1B4F81B4F938A00371EA1 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApiObject.h; path = ../WXApiObject.h; sourceTree = "<group>"; };
@@ -578,14 +579,14 @@
 		A9F1B4FB1B4F938A00371EA1 /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtil.m; sourceTree = "<group>"; };
 		A9F1B5041B4FC71B00371EA1 /* WXPayClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXPayClient.h; sourceTree = "<group>"; };
 		A9F1B5051B4FC71B00371EA1 /* WXPayClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXPayClient.m; sourceTree = "<group>"; };
-		C185B8D51B54E0CA00386DFA /* ShopCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCarViewController.h; sourceTree = "<group>"; };
-		C185B8D61B54E0CA00386DFA /* ShopCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCarViewController.m; sourceTree = "<group>"; };
-		C185B8D71B54E0CA00386DFA /* ShopCarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopCarViewController.xib; sourceTree = "<group>"; };
-		C185B8DA1B54E0DC00386DFA /* ShopCarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCarTableViewCell.h; sourceTree = "<group>"; };
-		C185B8DB1B54E0DC00386DFA /* ShopCarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCarTableViewCell.m; sourceTree = "<group>"; };
-		C185B8DC1B54E0DC00386DFA /* ShopCarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopCarTableViewCell.xib; sourceTree = "<group>"; };
-		C185B8DF1B54E0E600386DFA /* ShopCarFootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopCarFootView.xib; sourceTree = "<group>"; };
-		C185B8E01B54E0E600386DFA /* ShopCarHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopCarHeadView.xib; sourceTree = "<group>"; };
+		C185B8D51B54E0CA00386DFA /* ShopCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCartViewController.h; sourceTree = "<group>"; };
+		C185B8D61B54E0CA00386DFA /* ShopCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCartViewController.m; sourceTree = "<group>"; };
+		C185B8D71B54E0CA00386DFA /* ShopCartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopCartViewController.xib; sourceTree = "<group>"; };
+		C185B8DA1B54E0DC00386DFA /* ShopCartTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCartTableCell.h; sourceTree = "<group>"; };
+		C185B8DB1B54E0DC00386DFA /* ShopCartTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCartTableCell.m; sourceTree = "<group>"; };
+		C185B8DC1B54E0DC00386DFA /* ShopCartTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopCartTableCell.xib; sourceTree = "<group>"; };
+		C185B8DF1B54E0E600386DFA /* ShopCartFootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopCartFootView.xib; sourceTree = "<group>"; };
+		C185B8E01B54E0E600386DFA /* ShopCartHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopCartHeadView.xib; sourceTree = "<group>"; };
 		C185B8E31B54F18D00386DFA /* StoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreModel.h; sourceTree = "<group>"; };
 		C185B8E41B54F18D00386DFA /* StoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreModel.m; sourceTree = "<group>"; };
 		C185B8E91B551DED00386DFA /* AddressListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListViewController.h; sourceTree = "<group>"; };
@@ -605,6 +606,7 @@
 		C1922D641B56325900E72A57 /* ProfileCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCellView.xib; sourceTree = "<group>"; };
 		C1922D651B56325900E72A57 /* ProfileHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileHeadView.xib; sourceTree = "<group>"; };
 		C1922D681B56327900E72A57 /* SettingCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingCellView.xib; sourceTree = "<group>"; };
+		C1A8D05B1B58E6FC0052DE1F /* shopCartSplitLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shopCartSplitLine.png; sourceTree = "<group>"; };
 		C1C10BD01B53C3E4005DF14E /* ActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityModel.h; sourceTree = "<group>"; };
 		C1C10BD11B53C3E4005DF14E /* ActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModel.m; sourceTree = "<group>"; };
 		C1C10BD31B53C3F7005DF14E /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
@@ -1385,6 +1387,7 @@
 		66EBF57C1B4E61C100381B41 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				C1A8D05B1B58E6FC0052DE1F /* shopCartSplitLine.png */,
 				C18B38401B579CEA00301E45 /* productPlaceHold.png */,
 				66EBF58F1B4E648200381B41 /* store_map.png */,
 				66EBF57D1B4E61C100381B41 /* btn_down.png */,
@@ -1570,11 +1573,11 @@
 		A967A5BB1B40F415001C9EEF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C185B8DF1B54E0E600386DFA /* ShopCarFootView.xib */,
-				C185B8E01B54E0E600386DFA /* ShopCarHeadView.xib */,
-				C185B8DA1B54E0DC00386DFA /* ShopCarTableViewCell.h */,
-				C185B8DB1B54E0DC00386DFA /* ShopCarTableViewCell.m */,
-				C185B8DC1B54E0DC00386DFA /* ShopCarTableViewCell.xib */,
+				C185B8DF1B54E0E600386DFA /* ShopCartFootView.xib */,
+				C185B8E01B54E0E600386DFA /* ShopCartHeadView.xib */,
+				C185B8DA1B54E0DC00386DFA /* ShopCartTableCell.h */,
+				C185B8DB1B54E0DC00386DFA /* ShopCartTableCell.m */,
+				C185B8DC1B54E0DC00386DFA /* ShopCartTableCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1582,9 +1585,9 @@
 		A967A5BC1B40F41B001C9EEF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C185B8D51B54E0CA00386DFA /* ShopCarViewController.h */,
-				C185B8D61B54E0CA00386DFA /* ShopCarViewController.m */,
-				C185B8D71B54E0CA00386DFA /* ShopCarViewController.xib */,
+				C185B8D51B54E0CA00386DFA /* ShopCartViewController.h */,
+				C185B8D61B54E0CA00386DFA /* ShopCartViewController.m */,
+				C185B8D71B54E0CA00386DFA /* ShopCartViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1599,15 +1602,15 @@
 		A967A5BE1B40F913001C9EEF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A9F1B4E71B4F641500371EA1 /* DingDanRenTableViewCell.h */,
-				A9F1B4E81B4F641500371EA1 /* DingDanRenTableViewCell.m */,
-				A9F1B4E91B4F641500371EA1 /* DingDanRenTableViewCell.xib */,
-				A9F1B4EC1B4F65EA00371EA1 /* DingDanTableViewCell.h */,
-				A9F1B4ED1B4F65EA00371EA1 /* DingDanTableViewCell.m */,
-				A9F1B4EE1B4F65EA00371EA1 /* DingDanTableViewCell.xib */,
-				A9F1B4F11B4F676900371EA1 /* DingDanFootTableViewCell.h */,
-				A9F1B4F21B4F676900371EA1 /* DingDanFootTableViewCell.m */,
-				A9F1B4F31B4F676900371EA1 /* DingDanFootTableViewCell.xib */,
+				A9F1B4E71B4F641500371EA1 /* OrderAddressTableViewCell.h */,
+				A9F1B4E81B4F641500371EA1 /* OrderAddressTableViewCell.m */,
+				A9F1B4E91B4F641500371EA1 /* OrderAddressTableViewCell.xib */,
+				A9F1B4EC1B4F65EA00371EA1 /* OrderTableViewCell.h */,
+				A9F1B4ED1B4F65EA00371EA1 /* OrderTableViewCell.m */,
+				A9F1B4EE1B4F65EA00371EA1 /* OrderTableViewCell.xib */,
+				A9F1B4F11B4F676900371EA1 /* OrderFootTableViewCell.h */,
+				A9F1B4F21B4F676900371EA1 /* OrderFootTableViewCell.m */,
+				A9F1B4F31B4F676900371EA1 /* OrderFootTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1796,8 +1799,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				66EBF58A1B4E61C100381B41 /* store_search.png in Resources */,
-				C185B8D91B54E0CA00386DFA /* ShopCarViewController.xib in Resources */,
-				C185B8E11B54E0E600386DFA /* ShopCarFootView.xib in Resources */,
+				C185B8D91B54E0CA00386DFA /* ShopCartViewController.xib in Resources */,
+				C185B8E11B54E0E600386DFA /* ShopCartFootView.xib in Resources */,
 				66B415311B4CCDD500A6487F /* Tabbar1.png in Resources */,
 				66EBF56C1B4E12EA00381B41 /* HeDanViewController.xib in Resources */,
 				66DD92B91B4BCB1D001295A9 /* icon_user.png in Resources */,
@@ -1805,7 +1808,7 @@
 				66EBF58C1B4E61C100381B41 /* store_default.png in Resources */,
 				66B415651B4CEF7A00A6487F /* 个人.png in Resources */,
 				66EBF58B1B4E61C100381B41 /* pic_person.png in Resources */,
-				A9F1B4EB1B4F641500371EA1 /* DingDanRenTableViewCell.xib in Resources */,
+				A9F1B4EB1B4F641500371EA1 /* OrderAddressTableViewCell.xib in Resources */,
 				66DD92B81B4BCB1D001295A9 /* icon_feedback.png in Resources */,
 				A967A51C1B3A9570001C9EEF /* Images.xcassets in Resources */,
 				66EBF57B1B4E15BA00381B41 /* StoreTableViewCell.xib in Resources */,
@@ -1831,21 +1834,22 @@
 				A967A5381B3A95EC001C9EEF /* HomeViewController.xib in Resources */,
 				66DD92B51B4BCB1D001295A9 /* icon_share.png in Resources */,
 				66B4156F1B4CFB5700A6487F /* icon_move.png in Resources */,
+				C1A8D05C1B58E6FC0052DE1F /* shopCartSplitLine.png in Resources */,
 				66B415631B4CEF7A00A6487F /* Icon.png in Resources */,
 				66DD92B41B4BCB1D001295A9 /* btn_setting.png in Resources */,
 				66B415351B4CCDD500A6487F /* Tabbar3.png in Resources */,
-				C185B8E21B54E0E600386DFA /* ShopCarHeadView.xib in Resources */,
+				C185B8E21B54E0E600386DFA /* ShopCartHeadView.xib in Resources */,
 				66DD92BC1B4BCB1D001295A9 /* 加载.jpg in Resources */,
 				66EBF5761B4E156400381B41 /* ProductTableViewCell.xib in Resources */,
-				C185B8DE1B54E0DC00386DFA /* ShopCarTableViewCell.xib in Resources */,
+				C185B8DE1B54E0DC00386DFA /* ShopCartTableCell.xib in Resources */,
 				66DD92BA1B4BCB1D001295A9 /* icon_point.png in Resources */,
 				A967A53D1B3A9615001C9EEF /* JiFenViewController.xib in Resources */,
 				C1C10BD71B53C3F7005DF14E /* ActivityViewController.xib in Resources */,
-				A9F1B4F51B4F676900371EA1 /* DingDanFootTableViewCell.xib in Resources */,
+				A9F1B4F51B4F676900371EA1 /* OrderFootTableViewCell.xib in Resources */,
 				66B415B11B4D22CE00A6487F /* Resource.bundle in Resources */,
 				66DD92BD1B4BCB1D001295A9 /* 引导页.jpg in Resources */,
 				66B415371B4CCDD500A6487F /* Tabbar4.png in Resources */,
-				A9F1B4F01B4F65EA00371EA1 /* DingDanTableViewCell.xib in Resources */,
+				A9F1B4F01B4F65EA00371EA1 /* OrderTableViewCell.xib in Resources */,
 				C1922D671B56325900E72A57 /* ProfileHeadView.xib in Resources */,
 				66EBF5851B4E61C100381B41 /* btn_down.png in Resources */,
 				A967A5C41B40F95B001C9EEF /* OrderDetailViewController.xib in Resources */,
@@ -1893,7 +1897,7 @@
 				66DD92321B4A669C001295A9 /* SDWebImageDownloader.m in Sources */,
 				66DD92291B4A669C001295A9 /* ASIInputStream.m in Sources */,
 				66DD91EF1B4A669C001295A9 /* ATMHud.m in Sources */,
-				A9F1B4F41B4F676900371EA1 /* DingDanFootTableViewCell.m in Sources */,
+				A9F1B4F41B4F676900371EA1 /* OrderFootTableViewCell.m in Sources */,
 				66DD92331B4A669C001295A9 /* SDWebImageDownloaderOperation.m in Sources */,
 				66DD922C1B4A669C001295A9 /* Reachability.m in Sources */,
 				66DD92031B4A669C001295A9 /* MRIconView.m in Sources */,
@@ -1921,7 +1925,7 @@
 				66DD91F81B4A669C001295A9 /* EGOImageButton.m in Sources */,
 				66B415521B4CEDC700A6487F /* SDCycleScrollView.m in Sources */,
 				66DD90E51B4A632D001295A9 /* CommonUtils.m in Sources */,
-				C185B8D81B54E0CA00386DFA /* ShopCarViewController.m in Sources */,
+				C185B8D81B54E0CA00386DFA /* ShopCartViewController.m in Sources */,
 				66DD91FB1B4A669C001295A9 /* EGOImageView.m in Sources */,
 				66DD91F31B4A669C001295A9 /* ATMSoundFX.m in Sources */,
 				66DD92351B4A669C001295A9 /* SDWebImagePrefetcher.m in Sources */,
@@ -1956,7 +1960,7 @@
 				66DD923B1B4A669C001295A9 /* UIImageView+WebCache.m in Sources */,
 				66B415871B4D208400A6487F /* FMDatabasePool.m in Sources */,
 				66EBF57A1B4E15BA00381B41 /* StoreTableViewCell.m in Sources */,
-				A9F1B4EA1B4F641500371EA1 /* DingDanRenTableViewCell.m in Sources */,
+				A9F1B4EA1B4F641500371EA1 /* OrderAddressTableViewCell.m in Sources */,
 				66DD923A1B4A669C001295A9 /* UIImageView+HighlightedWebCache.m in Sources */,
 				66B4158A1B4D208400A6487F /* FMResultSet.m in Sources */,
 				66DD921B1B4A669C001295A9 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -1987,10 +1991,10 @@
 				66DD92341B4A669C001295A9 /* SDWebImageManager.m in Sources */,
 				66DD92101B4A669C001295A9 /* AFURLSessionManager.m in Sources */,
 				C185B8EC1B551DED00386DFA /* AddressListViewController.m in Sources */,
-				A9F1B4EF1B4F65EA00371EA1 /* DingDanTableViewCell.m in Sources */,
+				A9F1B4EF1B4F65EA00371EA1 /* OrderTableViewCell.m in Sources */,
 				66DD92251B4A669C001295A9 /* ASIDataDecompressor.m in Sources */,
 				66DD924D1B4A669C001295A9 /* UIViewController+ToastMessage.m in Sources */,
-				C185B8DD1B54E0DC00386DFA /* ShopCarTableViewCell.m in Sources */,
+				C185B8DD1B54E0DC00386DFA /* ShopCartTableCell.m in Sources */,
 				66DD91FF1B4A669C001295A9 /* MRBlurView.m in Sources */,
 				66DD92021B4A669C001295A9 /* MRCircularProgressView.m in Sources */,
 				66B415861B4D208400A6487F /* FMDatabaseAdditions.m in Sources */,

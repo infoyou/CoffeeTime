@@ -1,5 +1,5 @@
 //
-//  DingDanTableViewCell.h
+//  OrderTableViewCell.h
 //  CoffeeTime
 //
 //  Created by Adam on 15/7/10.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DingDanTableViewCell : UITableViewCell
+@interface OrderTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *chooseLabel;
 
 @property (strong, nonatomic) IBOutlet UILabel *meansLabel;

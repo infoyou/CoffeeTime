@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[ShopCartViewController doHandleMethod:rowIndex:goodsTypeListIndex:]:ShopCartViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "shopCartDataArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ShopCartViewController tableView:cellForRowAtIndexPath:]:ShopCartViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "shopCartDataArray[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

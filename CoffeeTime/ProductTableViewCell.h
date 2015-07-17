@@ -12,25 +12,18 @@
 
 @protocol ProductTableViewCellDelegate <NSObject>
 
--(void)btnClick:(UITableViewCell *)cell andFlag:(NSInteger)flag;
+- (void)btnClick:(UITableViewCell *)cell tag:(NSInteger)tag;
+
 @end
 
 @interface ProductTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *goodsTitle;
-@property (strong, nonatomic) IBOutlet UIImageView *goodsImage;
-@property (strong, nonatomic) IBOutlet UIButton *addButton;
-@property (strong, nonatomic) IBOutlet UIButton *subButton;
-@property (strong, nonatomic) IBOutlet UILabel *unitPrice;
-@property (strong, nonatomic) IBOutlet UILabel *goodNum;
+@property (assign, nonatomic) id<ProductTableViewCellDelegate> delegate;
 
-- (IBAction)addButton:(id)sender;
-- (IBAction)subButton:(id)sender;
+@property (strong, nonatomic) IBOutlet UILabel *productName;
+@property (strong, nonatomic) IBOutlet UIImageView *productIcon;
 
-@property (strong, nonatomic) IBOutlet UILabel *unitName;
 
-@property (assign,nonatomic) id<ProductTableViewCellDelegate> delegate;
-
--(void)addTheValue:(ProductModel *)goodsModel theValue:(ProductTypeModel*)goodList indexPath:(NSIndexPath *)indexPath;
+- (void)addProductUnit:(ProductModel *)productModel indexPath:(NSIndexPath *)indexPath;
 
 @end

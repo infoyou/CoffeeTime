@@ -4,10 +4,13 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShopCarViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShopCartViewController">
             <connections>
+                <outlet property="btnConfim" destination="dQV-MF-Ol2" id="R2V-Sx-eg7"/>
+                <outlet property="btnSwitchProduct" destination="wM1-p9-PKV" id="chd-Mq-Jas"/>
                 <outlet property="confirmView" destination="1JY-7g-lMT" id="eHF-0x-0oe"/>
                 <outlet property="mTableView" destination="Lh2-i7-zuB" id="dCp-za-yJx"/>
+                <outlet property="totalPriceLabel" destination="MxI-No-Rk1" id="8sj-SO-mvK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="kSQ-Co-2xX"/>
             </connections>
         </placeholder>
@@ -16,8 +19,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Lh2-i7-zuB">
-                    <rect key="frame" x="8" y="8" width="304" height="448"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Lh2-i7-zuB">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="sAm-ND-sKM"/>
@@ -27,7 +30,7 @@
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1JY-7g-lMT">
                     <rect key="frame" x="0.0" y="464" width="320" height="40"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQV-MF-Ol2">
+                        <button opaque="NO" tag="12" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQV-MF-Ol2">
                             <rect key="frame" x="248" y="6" width="64" height="28"/>
                             <color key="backgroundColor" red="0.99215686270000003" green="0.70196078429999997" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -36,16 +39,16 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="confirmButton:" destination="-1" eventType="touchUpInside" id="4UA-cT-R8f"/>
+                                <action selector="doConfim:" destination="-1" eventType="touchUpInside" id="G5t-Yt-GK5"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="￥27.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxI-No-Rk1">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="￥27.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxI-No-Rk1">
                             <rect key="frame" x="170" y="11" width="70" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wM1-p9-PKV">
+                        <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wM1-p9-PKV">
                             <rect key="frame" x="8" y="5" width="67" height="30"/>
                             <color key="backgroundColor" red="0.99215686270000003" green="0.70196078429999997" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -53,16 +56,16 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="xiuGaiButton:" destination="-1" eventType="touchUpInside" id="kfD-il-gZK"/>
+                                <action selector="doSwitchProduct:" destination="-1" eventType="touchUpInside" id="uGH-87-y9A"/>
                             </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <color key="backgroundColor" red="0.91764705882352937" green="0.9137254901960784" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="501" y="-116"/>
+            <point key="canvasLocation" x="512" y="-116"/>
         </view>
         <searchDisplayController id="cZR-uB-080"/>
     </objects>

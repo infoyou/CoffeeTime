@@ -252,7 +252,7 @@
 {
     
     NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
-    [dataDict setObject:[AppManager instance].userId forKey:@"username"];
+    [dataDict setObject:@"13524010590" forKey:@"username"];
     [dataDict setObject:[AppManager instance].userPswd forKey:@"password"];
     
     NSMutableDictionary *paramDict = [CommonUtils getParamDict:@"userLogin"

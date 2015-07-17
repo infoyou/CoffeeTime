@@ -29,7 +29,7 @@
 - (void)updateShopCartDB:(ShopCartModel *)userInfo;
 - (void)delShopCartTableBy:(ShopCartModel *)shopCart;
 
-- (void)updateShopCartLogic:(ShopCartModel *)shopCarModel;
+- (void)updateShopCartLogic:(ShopCartModel *)shopCartModel;
 - (NSMutableArray *)getStoreAllCartFromDB:(NSString *)storeId;
 
 // 判断是否有数据，需要清空？
@@ -39,6 +39,6 @@
 
 - (BOOL)isNeedClearShopCart:(NSString *)storeId;
 
-- (NSMutableArray *)getShopCartShowNumber;
+- (NSMutableArray *)getShopCartShowNumber:(NSString *)storeId;
 
 @end

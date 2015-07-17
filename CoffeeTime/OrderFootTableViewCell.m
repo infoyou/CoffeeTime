@@ -1,14 +1,14 @@
 //
-//  DingDanFootTableViewCell.m
+//  OrderFootTableViewCell.m
 //  CoffeeTime
 //
 //  Created by Adam on 15/7/10.
 //  Copyright (c) 2015年 fule. All rights reserved.
 //
 
-#import "DingDanFootTableViewCell.h"
+#import "OrderFootTableViewCell.h"
 
-@implementation DingDanFootTableViewCell
+@implementation OrderFootTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code

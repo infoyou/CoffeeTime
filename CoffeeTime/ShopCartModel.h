@@ -30,7 +30,7 @@
 @property (strong, nonatomic) NSString *unitId;//商品属性ID
 @property (strong, nonatomic) NSString *productNo;//商品编码
 @property (strong, nonatomic) NSNumber *unitPrice;//商品单价
-@property (assign, nonatomic) NSNumber *shopCartNum;//商品个数
+@property (strong, nonatomic) NSNumber *shopCartNum;//商品个数
 
 
 - (instancetype)initWithDict:(NSDictionary *)dict;

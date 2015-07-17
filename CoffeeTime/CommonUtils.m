@@ -623,6 +623,7 @@ static NSBundle *bundle = nil;
         [dataDict setObject:[AppManager instance].latitude forKey:@"lat"];
         [dataDict setObject:[CommonUtils currentTimeInterval] forKey:@"time"];
         [dataDict setObject:[AppManager instance].userTicket forKey:@"pk"];
+        [dataDict setObject:[AppManager instance].userId forKey:@"userId"];
         
         [specialDict setObject:dataDict forKey:@"data"];
     } else {

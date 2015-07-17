@@ -1,5 +1,5 @@
 //
-//  ShopCarTableViewCell.h
+//  OrderAddressTableViewCell.h
 //  CoffeeTime
 //
 //  Created by Adam on 15/7/10.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShopCarTableViewCell : UITableViewCell
+@interface OrderAddressTableViewCell : UITableViewCell
 
 @end

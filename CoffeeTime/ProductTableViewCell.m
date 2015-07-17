@@ -43,15 +43,15 @@
  *
  *  @param productModel 里面存放各个控件需要的数值
  */
--(void)addTheValue:(ProductModel *)productModel theValue:(ProductTypeModel *)productTypeModel indexPath:(NSIndexPath *)indexPath
+- (void)addProductUnit:(ProductModel *)productModel indexPath:(NSIndexPath *)indexPath
 {
 
-    // Icon
-    [self.goodsImage sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:productModel.imageUrl] andPlaceholderImage:[UIImage imageNamed:@"productPlaceHold.png"] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+    // Product Icon
+    [self.productIcon sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:productModel.imageUrl] andPlaceholderImage:[UIImage imageNamed:@"productPlaceHold.png"] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         //Nothing.
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         //Nothing.
-        self.goodsImage.image = image;
+        self.productIcon.image = image;
     }];
     
     // Content
@@ -112,19 +112,17 @@
         
     }
     
-    self.goodsTitle.text = productModel.productName;
-    
+    self.productName.text = productModel.productName;
 }
 
--(void)addButton:(UIButton*)btn{
+- (void)addButton:(UIButton*)btn{
    
-    [self.delegate btnClick:self andFlag:(NSInteger)btn.tag];
-
+    [self.delegate btnClick:self tag:(NSInteger)btn.tag];
 }
--(void)subButton:(UIButton*)btn{
-   
-    [self.delegate btnClick:self andFlag:(NSInteger)btn.tag];
 
+- (void)subButton:(UIButton*)btn{
+   
+    [self.delegate btnClick:self tag:(NSInteger)btn.tag];
 }
 
 @end

@@ -76,7 +76,7 @@ NSInteger selIndex;
     static NSString *CellID = @"CellID";
     UITableViewCell *cell = [self.mTableView dequeueReusableCellWithIdentifier:CellID];
     if (cell==nil) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"AddressListCellView" owner:nil options:nil]lastObject];
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"AddressListCellView" owner:nil options:nil] lastObject];
     }
     
     AddressModel *addressModel = (AddressModel *)infoArr[indexPath.row];

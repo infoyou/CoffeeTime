@@ -62,7 +62,7 @@ static AppManager *shareInstance = nil;
         [AppManager instance].userPoint = [self pointRemembered];
     } else {
         
-        [AppManager instance].userId = @"13524010590";
+        [AppManager instance].userId = @"";
         [AppManager instance].userPswd = @"123456";
         [AppManager instance].userName = @"我";
         [AppManager instance].userNickName = @"Adam";

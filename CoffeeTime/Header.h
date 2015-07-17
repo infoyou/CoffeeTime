@@ -15,7 +15,7 @@
 #import "ProfileViewController.h"
 #import "ActivityViewController.h"
 #import "ProductListViewController.h"
-#import "ShopCarViewController.h"
+#import "ShopCartViewController.h"
 #import "OrderDetailViewController.h"
 #import "HeDanViewController.h"
 

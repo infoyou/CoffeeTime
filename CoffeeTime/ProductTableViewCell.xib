@@ -33,8 +33,8 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="goodsImage" destination="e7p-7d-mwU" id="8bG-ts-jgd"/>
-                <outlet property="goodsTitle" destination="Goj-Km-je4" id="r8F-xc-9yE"/>
+                <outlet property="productIcon" destination="e7p-7d-mwU" id="Iwd-0S-zkW"/>
+                <outlet property="productName" destination="Goj-Km-je4" id="aXa-33-5Ht"/>
             </connections>
             <point key="canvasLocation" x="340" y="169"/>
         </tableViewCell>
