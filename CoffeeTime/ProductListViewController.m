@@ -325,8 +325,6 @@
     
     [dataDict setObject:[AppManager instance].selStoreId forKey:@"shopId"];
     
-//    {"commodityId":"12","commodityTypeId":"12","commodityPrice":"55","commodityAmount":"2"}
-    
     if ([[FMDBConnection instance] getAllShopCartDataFromDB]) {
         
         NSMutableArray *productListArray = [NSMutableArray array];

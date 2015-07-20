@@ -624,6 +624,7 @@ static NSBundle *bundle = nil;
         [dataDict setObject:[CommonUtils currentTimeInterval] forKey:@"time"];
         [dataDict setObject:[AppManager instance].userTicket forKey:@"pk"];
         [dataDict setObject:[AppManager instance].userId forKey:@"userId"];
+        [dataDict setObject:[AppManager instance].userTicket forKey:@"ticket"];
         
         [specialDict setObject:dataDict forKey:@"data"];
     } else {

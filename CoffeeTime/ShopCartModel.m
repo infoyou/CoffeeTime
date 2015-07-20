@@ -10,7 +10,7 @@
 
 @implementation ShopCartModel
 
--(instancetype)initWithDict:(NSDictionary *)dict
+- (instancetype)initWithDict:(NSDictionary *)dict
 {
     
     if (self = [super init])

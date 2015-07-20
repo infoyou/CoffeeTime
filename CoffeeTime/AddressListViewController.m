@@ -104,7 +104,6 @@ NSInteger selIndex;
     }
     
     return cell;
-    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -134,8 +133,6 @@ NSInteger selIndex;
     infoArr = [[NSMutableArray alloc]init];
     
     NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
-    [dataDict setObject:@"18721203520" forKey:@"username"];
-    [dataDict setObject:[AppManager instance].userTicket forKey:@"ticket"];
     
     NSMutableDictionary *paramDict = [CommonUtils getParamDict:@"addressList"
                                                       dataDict:dataDict];
@@ -206,7 +203,8 @@ NSInteger selIndex;
         
         AddressEditViewController *addEditVC = [[AddressEditViewController alloc] init];
         
-        [addEditVC updateData:addressModel.receiverName
+        [addEditVC updateData:addressModel.addressId
+                         name:addressModel.receiverName
                         phone:addressModel.receiverPhone
                       address:addressModel.receiverAddress];
         

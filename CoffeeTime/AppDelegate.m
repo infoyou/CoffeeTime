@@ -50,7 +50,7 @@
     BaseNavigationController *activityNav = [[BaseNavigationController alloc] initWithRootViewController:activityVC];
     
     // 晒单
-    HeDanViewController *orderVC = [[HeDanViewController alloc] init];
+    OrderListViewController *orderVC = [[OrderListViewController alloc] init];
     BaseNavigationController *jiFenNav = [[BaseNavigationController alloc] initWithRootViewController:orderVC];
     
     // Profile

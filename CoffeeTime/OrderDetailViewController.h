@@ -16,5 +16,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *mTableView;
 
 @property (weak, nonatomic) IBOutlet UILabel *payPrice;
+@property (weak, nonatomic) IBOutlet UIButton *btnConfim;
 
 @end

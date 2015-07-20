@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderDetailViewController">
             <connections>
+                <outlet property="btnConfim" destination="OEV-l8-Ggg" id="djd-YS-EBy"/>
                 <outlet property="mTableView" destination="S3M-Ox-ii6" id="0H4-Ag-p03"/>
                 <outlet property="payPrice" destination="3vn-cJ-JqK" id="Nfi-x7-1A5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

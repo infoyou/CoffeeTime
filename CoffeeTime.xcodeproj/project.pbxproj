@@ -161,11 +161,11 @@
 		66DD92BC1B4BCB1D001295A9 /* 加载.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66DD92B21B4BCB1C001295A9 /* 加载.jpg */; };
 		66DD92BD1B4BCB1D001295A9 /* 引导页.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66DD92B31B4BCB1D001295A9 /* 引导页.jpg */; };
 		66DD92BF1B4BDB86001295A9 /* icon_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DD92BE1B4BDB86001295A9 /* icon_right.png */; };
-		66EBF5651B4E12DF00381B41 /* HeDanFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EBF5611B4E12DF00381B41 /* HeDanFootView.xib */; };
-		66EBF5661B4E12DF00381B41 /* HeDanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EBF5631B4E12DF00381B41 /* HeDanTableViewCell.m */; };
-		66EBF5671B4E12DF00381B41 /* HeDanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EBF5641B4E12DF00381B41 /* HeDanTableViewCell.xib */; };
-		66EBF56B1B4E12EA00381B41 /* HeDanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EBF5691B4E12EA00381B41 /* HeDanViewController.m */; };
-		66EBF56C1B4E12EA00381B41 /* HeDanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EBF56A1B4E12EA00381B41 /* HeDanViewController.xib */; };
+		66EBF5651B4E12DF00381B41 /* OrderListFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EBF5611B4E12DF00381B41 /* OrderListFootView.xib */; };
+		66EBF5661B4E12DF00381B41 /* OrderListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EBF5631B4E12DF00381B41 /* OrderListTableViewCell.m */; };
+		66EBF5671B4E12DF00381B41 /* OrderListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EBF5641B4E12DF00381B41 /* OrderListTableViewCell.xib */; };
+		66EBF56B1B4E12EA00381B41 /* OrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EBF5691B4E12EA00381B41 /* OrderListViewController.m */; };
+		66EBF56C1B4E12EA00381B41 /* OrderListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EBF56A1B4E12EA00381B41 /* OrderListViewController.xib */; };
 		66EBF5701B4E154000381B41 /* ProductListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EBF56E1B4E154000381B41 /* ProductListViewController.m */; };
 		66EBF5711B4E154000381B41 /* ProductListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EBF56F1B4E154000381B41 /* ProductListViewController.xib */; };
 		66EBF5751B4E156400381B41 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EBF5731B4E156400381B41 /* ProductTableViewCell.m */; };
@@ -200,6 +200,7 @@
 		A9F1B5001B4F938A00371EA1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F1B4F61B4F938A00371EA1 /* libWeChatSDK.a */; };
 		A9F1B5011B4F938A00371EA1 /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F1B4FB1B4F938A00371EA1 /* CommonUtil.m */; };
 		A9F1B5061B4FC71B00371EA1 /* WXPayClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F1B5051B4FC71B00371EA1 /* WXPayClient.m */; };
+		C100F3B61B5CCF8E00ABEA03 /* OrderDoneObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C100F3B51B5CCF8E00ABEA03 /* OrderDoneObject.m */; };
 		C185B8D81B54E0CA00386DFA /* ShopCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C185B8D61B54E0CA00386DFA /* ShopCartViewController.m */; };
 		C185B8D91B54E0CA00386DFA /* ShopCartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C185B8D71B54E0CA00386DFA /* ShopCartViewController.xib */; };
 		C185B8DD1B54E0DC00386DFA /* ShopCartTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C185B8DB1B54E0DC00386DFA /* ShopCartTableCell.m */; };
@@ -519,13 +520,13 @@
 		66DD92B21B4BCB1C001295A9 /* 加载.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "加载.jpg"; sourceTree = "<group>"; };
 		66DD92B31B4BCB1D001295A9 /* 引导页.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "引导页.jpg"; sourceTree = "<group>"; };
 		66DD92BE1B4BDB86001295A9 /* icon_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_right.png; sourceTree = "<group>"; };
-		66EBF5611B4E12DF00381B41 /* HeDanFootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeDanFootView.xib; sourceTree = "<group>"; };
-		66EBF5621B4E12DF00381B41 /* HeDanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeDanTableViewCell.h; sourceTree = "<group>"; };
-		66EBF5631B4E12DF00381B41 /* HeDanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeDanTableViewCell.m; sourceTree = "<group>"; };
-		66EBF5641B4E12DF00381B41 /* HeDanTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeDanTableViewCell.xib; sourceTree = "<group>"; };
-		66EBF5681B4E12EA00381B41 /* HeDanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeDanViewController.h; sourceTree = "<group>"; };
-		66EBF5691B4E12EA00381B41 /* HeDanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeDanViewController.m; sourceTree = "<group>"; };
-		66EBF56A1B4E12EA00381B41 /* HeDanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeDanViewController.xib; sourceTree = "<group>"; };
+		66EBF5611B4E12DF00381B41 /* OrderListFootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListFootView.xib; sourceTree = "<group>"; };
+		66EBF5621B4E12DF00381B41 /* OrderListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListTableViewCell.h; sourceTree = "<group>"; };
+		66EBF5631B4E12DF00381B41 /* OrderListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListTableViewCell.m; sourceTree = "<group>"; };
+		66EBF5641B4E12DF00381B41 /* OrderListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListTableViewCell.xib; sourceTree = "<group>"; };
+		66EBF5681B4E12EA00381B41 /* OrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListViewController.h; sourceTree = "<group>"; };
+		66EBF5691B4E12EA00381B41 /* OrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListViewController.m; sourceTree = "<group>"; };
+		66EBF56A1B4E12EA00381B41 /* OrderListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListViewController.xib; sourceTree = "<group>"; };
 		66EBF56D1B4E154000381B41 /* ProductListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListViewController.h; sourceTree = "<group>"; };
 		66EBF56E1B4E154000381B41 /* ProductListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListViewController.m; sourceTree = "<group>"; };
 		66EBF56F1B4E154000381B41 /* ProductListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductListViewController.xib; sourceTree = "<group>"; };
@@ -579,6 +580,8 @@
 		A9F1B4FB1B4F938A00371EA1 /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtil.m; sourceTree = "<group>"; };
 		A9F1B5041B4FC71B00371EA1 /* WXPayClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXPayClient.h; sourceTree = "<group>"; };
 		A9F1B5051B4FC71B00371EA1 /* WXPayClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXPayClient.m; sourceTree = "<group>"; };
+		C100F3B41B5CCF8E00ABEA03 /* OrderDoneObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDoneObject.h; sourceTree = "<group>"; };
+		C100F3B51B5CCF8E00ABEA03 /* OrderDoneObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDoneObject.m; sourceTree = "<group>"; };
 		C185B8D51B54E0CA00386DFA /* ShopCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCartViewController.h; sourceTree = "<group>"; };
 		C185B8D61B54E0CA00386DFA /* ShopCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCartViewController.m; sourceTree = "<group>"; };
 		C185B8D71B54E0CA00386DFA /* ShopCartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopCartViewController.xib; sourceTree = "<group>"; };
@@ -1349,9 +1352,9 @@
 		66EBF55D1B4E12B000381B41 /* 喝单 */ = {
 			isa = PBXGroup;
 			children = (
+				66EBF55E1B4E12BB00381B41 /* Model */,
 				66EBF5601B4E12CA00381B41 /* Controller */,
 				66EBF55F1B4E12C400381B41 /* View */,
-				66EBF55E1B4E12BB00381B41 /* Model */,
 			);
 			name = "喝单";
 			sourceTree = "<group>";
@@ -1359,6 +1362,8 @@
 		66EBF55E1B4E12BB00381B41 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C100F3B41B5CCF8E00ABEA03 /* OrderDoneObject.h */,
+				C100F3B51B5CCF8E00ABEA03 /* OrderDoneObject.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1366,10 +1371,10 @@
 		66EBF55F1B4E12C400381B41 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				66EBF5611B4E12DF00381B41 /* HeDanFootView.xib */,
-				66EBF5621B4E12DF00381B41 /* HeDanTableViewCell.h */,
-				66EBF5631B4E12DF00381B41 /* HeDanTableViewCell.m */,
-				66EBF5641B4E12DF00381B41 /* HeDanTableViewCell.xib */,
+				66EBF5611B4E12DF00381B41 /* OrderListFootView.xib */,
+				66EBF5621B4E12DF00381B41 /* OrderListTableViewCell.h */,
+				66EBF5631B4E12DF00381B41 /* OrderListTableViewCell.m */,
+				66EBF5641B4E12DF00381B41 /* OrderListTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1377,9 +1382,9 @@
 		66EBF5601B4E12CA00381B41 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				66EBF5681B4E12EA00381B41 /* HeDanViewController.h */,
-				66EBF5691B4E12EA00381B41 /* HeDanViewController.m */,
-				66EBF56A1B4E12EA00381B41 /* HeDanViewController.xib */,
+				66EBF5681B4E12EA00381B41 /* OrderListViewController.h */,
+				66EBF5691B4E12EA00381B41 /* OrderListViewController.m */,
+				66EBF56A1B4E12EA00381B41 /* OrderListViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1802,7 +1807,7 @@
 				C185B8D91B54E0CA00386DFA /* ShopCartViewController.xib in Resources */,
 				C185B8E11B54E0E600386DFA /* ShopCartFootView.xib in Resources */,
 				66B415311B4CCDD500A6487F /* Tabbar1.png in Resources */,
-				66EBF56C1B4E12EA00381B41 /* HeDanViewController.xib in Resources */,
+				66EBF56C1B4E12EA00381B41 /* OrderListViewController.xib in Resources */,
 				66DD92B91B4BCB1D001295A9 /* icon_user.png in Resources */,
 				66B415361B4CCDD500A6487F /* Tabbar3_sel.png in Resources */,
 				66EBF58C1B4E61C100381B41 /* store_default.png in Resources */,
@@ -1826,7 +1831,7 @@
 				66B4156C1B4CFB5700A6487F /* edit_address.png in Resources */,
 				66B4156D1B4CFB5700A6487F /* edit_name.png in Resources */,
 				66B415B41B4D22CE00A6487F /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
-				66EBF5671B4E12DF00381B41 /* HeDanTableViewCell.xib in Resources */,
+				66EBF5671B4E12DF00381B41 /* OrderListTableViewCell.xib in Resources */,
 				C1922D661B56325900E72A57 /* ProfileCellView.xib in Resources */,
 				66B415671B4CFA1E00A6487F /* AddressEditViewController.xib in Resources */,
 				66B4156E1B4CFB5700A6487F /* edit_phone.png in Resources */,
@@ -1855,7 +1860,7 @@
 				A967A5C41B40F95B001C9EEF /* OrderDetailViewController.xib in Resources */,
 				66EBF5861B4E61C100381B41 /* btn_left.png in Resources */,
 				66DD92A51B4BB7CD001295A9 /* AddressListCellView.xib in Resources */,
-				66EBF5651B4E12DF00381B41 /* HeDanFootView.xib in Resources */,
+				66EBF5651B4E12DF00381B41 /* OrderListFootView.xib in Resources */,
 				C1922D621B562F6D00E72A57 /* SettingViewController.xib in Resources */,
 				C18B38411B579CEA00301E45 /* productPlaceHold.png in Resources */,
 				66B415B01B4D22CE00A6487F /* ShareSDKLocalizable.strings in Resources */,
@@ -1905,7 +1910,7 @@
 				66EBF5701B4E154000381B41 /* ProductListViewController.m in Sources */,
 				66DD92391B4A669C001295A9 /* UIImage+WebP.m in Sources */,
 				66DD92231B4A669C001295A9 /* ASIAuthenticationDialog.m in Sources */,
-				66EBF56B1B4E12EA00381B41 /* HeDanViewController.m in Sources */,
+				66EBF56B1B4E12EA00381B41 /* OrderListViewController.m in Sources */,
 				66DD92361B4A669C001295A9 /* UIButton+WebCache.m in Sources */,
 				A9EA66D81B43868200838886 /* ProductTypeModel.m in Sources */,
 				A9EA66D51B43841000838886 /* ProductModel.m in Sources */,
@@ -1913,6 +1918,7 @@
 				66DD926E1B4A829D001295A9 /* CommonWebViewController.m in Sources */,
 				66DD92211B4A669C001295A9 /* UIRefreshControl+AFNetworking.m in Sources */,
 				66DD92301B4A669C001295A9 /* SDWebImageCompat.m in Sources */,
+				C100F3B61B5CCF8E00ABEA03 /* OrderDoneObject.m in Sources */,
 				66DD91F61B4A669C001295A9 /* EGORefreshTableHeaderView.m in Sources */,
 				66DD924E1B4A669C001295A9 /* UIColor+expanded.m in Sources */,
 				C185B8F01B551E0100386DFA /* AddressModel.m in Sources */,
@@ -1974,7 +1980,7 @@
 				66DD91F91B4A669C001295A9 /* EGOImageLoadConnection.m in Sources */,
 				66DD92081B4A669C001295A9 /* AFHTTPRequestOperation.m in Sources */,
 				66DD922F1B4A669C001295A9 /* SDImageCache.m in Sources */,
-				66EBF5661B4E12DF00381B41 /* HeDanTableViewCell.m in Sources */,
+				66EBF5661B4E12DF00381B41 /* OrderListTableViewCell.m in Sources */,
 				66DD920C1B4A669C001295A9 /* AFSecurityPolicy.m in Sources */,
 				66DD92011B4A669C001295A9 /* MRActivityIndicatorView.m in Sources */,
 				66DD92001B4A669C001295A9 /* UIImage+MRImageEffects.m in Sources */,

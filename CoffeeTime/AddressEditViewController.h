@@ -11,7 +11,7 @@
 
 @interface AddressEditViewController : RootViewController
 
-- (void)updateData:(NSString *)name phone:(NSString *)phone address:(NSString *)address;
+- (void)updateData:(NSString *)addressId name:(NSString *)name phone:(NSString *)phone address:(NSString *)address;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTxt;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTxt;

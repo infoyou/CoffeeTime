@@ -13,6 +13,6 @@
 
 + (instancetype)shareInstance;
 
-- (void)payProductwithPrice:(NSString*)aPrice;
+- (void)payProductwithName:(NSString*)aProductName aPrice:(NSString*)aPrice;
 
 @end

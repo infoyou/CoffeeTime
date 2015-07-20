@@ -49,6 +49,7 @@
 
 - (void)viewDidLoad
 {
+    [self initData];
 
     // Status Bar Style
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
@@ -58,8 +59,6 @@
     
     [self initNoNetWorkView];
     
-    [self initData];
-    [self adjustView];
     
     [self loadLocation];
     
@@ -85,9 +84,11 @@
     
 //    // Navi
 //    self.navigationController.navigationBarHidden = NO;
-//    
+//
 //    // Tab Bar
 //    [self showOrHideTabBar:YES];
+    
+    [self adjustView];
     
     [super viewDidLoad];
 }

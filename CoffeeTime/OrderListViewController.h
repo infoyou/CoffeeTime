@@ -1,5 +1,5 @@
 //
-//  HeDanViewController.h
+//  OrderListViewController.h
 //  CoffeeTime
 //
 //  Created by Adam on 15/7/7.
@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "RootViewController.h"
 
-@interface HeDanViewController : RootViewController
+@interface OrderListViewController : RootViewController
 
 @property (strong, nonatomic) IBOutlet UIView *navView;
 @property (strong, nonatomic) IBOutlet UITableView *mTableView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segMent;
+
 - (IBAction)segChange:(id)sender;
 
 @end

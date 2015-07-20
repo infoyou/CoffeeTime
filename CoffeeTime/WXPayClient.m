@@ -23,7 +23,9 @@ NSString *expiresInKey = @"expires_in";
 @property (nonatomic, copy) NSString *nonceStr;
 @property (nonatomic, copy) NSString *traceId;
 
-@property(nonatomic,copy)NSString* price;
+@property (nonatomic, copy) NSString  *orderName;
+@property (nonatomic, copy) NSString  *orderPrice;
+
 @end
 
 @implementation WXPayClient
@@ -37,13 +39,16 @@ NSString *expiresInKey = @"expires_in";
     dispatch_once(&onceToken, ^{
         sharedClient = [[WXPayClient alloc] init];
     });
+    
     return sharedClient;
 }
 
-- (void)payProductwithPrice:(NSString*)aPrice
+- (void)payProductwithName:(NSString*)aProductName aPrice:(NSString*)aPrice
 {
     [self getAccessToken];
-    self.price=aPrice;
+    
+    self.orderName = aProductName;
+    self.orderPrice = aPrice;
 }
 
 #pragma mark - 生成各种参数
@@ -79,14 +84,14 @@ NSString *expiresInKey = @"expires_in";
     // 构造参数列表
     NSMutableDictionary *params = [NSMutableDictionary dictionary]; 
     [params setObject:@"WX" forKey:@"bank_type"];
-    [params setObject:@"千足金箍棒" forKey:@"body"];
+    [params setObject:self.orderName forKey:@"body"];
     [params setObject:@"1" forKey:@"fee_type"];
     [params setObject:@"UTF-8" forKey:@"input_charset"];
     [params setObject:@"http://weixin.qq.com" forKey:@"notify_url"];
     [params setObject:[self genOutTradNo] forKey:@"out_trade_no"]; 
     [params setObject:WXPartnerId forKey:@"partner"];
     [params setObject:[CommonUtil getIPAddress:YES] forKey:@"spbill_create_ip"]; 
-    [params setObject:self.price forKey:@"total_fee"];    // 1 =＝ ¥0.01
+    [params setObject:self.orderPrice forKey:@"total_fee"];    // 1 =＝ ¥0.01
     
     NSArray *keys = [params allKeys];
     NSArray *sortedKeys = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) { 

@@ -20,10 +20,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_right.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Ua-M9-30S">
-                        <rect key="frame" x="287" y="15" width="16" height="15"/>
+                        <rect key="frame" x="299" y="15" width="10" height="15"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="送达时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8w5-AG-bud">
-                        <rect key="frame" x="8" y="12" width="77" height="21"/>
+                        <rect key="frame" x="10" y="12" width="138" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>

@@ -58,6 +58,7 @@
 
 - (void)adjustView
 {
+    
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"ShopCartHeadView" owner:self options:nil];
     UIView *headView = [nib objectAtIndex:0];
     self.mTableView.tableHeaderView = headView;
@@ -92,7 +93,7 @@
 }
 
 #pragma mark - tableView的协议方法
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [shopCartDataArray count];
 }
